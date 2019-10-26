@@ -1,0 +1,36 @@
+#! /bin/sh
+
+. $HOME/.cache/wal/colors.sh
+
+SXHKD_FIFO="/tmp/sxhkd-fifo"
+mkfifo $SXHKD_FIFO 
+sxhkd -s $SXHKD_FIFO &
+$HOME/.config/polybar/launch.sh
+
+$HOME/.config/bspwm/sxhkd-fifo "$color5" "$SXHKD_FIFO" &
+
+gebaard -b
+
+bspc monitor -d 1
+
+bspc config border_width         4
+bspc config window_gap          5
+
+bspc config focused_border_color "$color4"
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
+
+bspc config initial_polarity second_child
+bspc config automatic_scheme alternate
+
+bspc config pointer_follows_focus true
+bspc config focus_follows_pointer true
+
+bpsc config pointer_action1 move
+bpsc config pointer_action3 resize_side
+
+bspc rule -a mpv state='floating'
+bspc rule -a feh state='floating' center='on'
+

@@ -1,0 +1,91 @@
+! special
+*.foreground:   #b3b8c3
+*.background:   #121b21
+*.cursorColor:  #b3b8c3
+
+! black
+*.color0:       #121c21
+*.color8:       #52606b
+
+! red
+*.color1:       #e44754
+*.color9:       #e44754
+
+! green
+*.color2:       #89bd82
+*.color10:      #89bd82
+
+! yellow
+*.color3:       #f7bd51
+*.color11:      #f7bd51
+
+! blue
+*.color4:       #5486c0
+*.color12:      #5486c0
+
+! magenta
+*.color5:       #b77eb8
+*.color13:      #b77eb8
+
+! cyan
+*.color6:       #50a5a4
+*.color14:      #50a5a4
+
+! white
+*.color7:       #ffffff
+*.color15:      #ffffff
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+URxvt*font:                    xft:Operator\ Mono:pixelsize=13:style=Regular,\
+                               xft:Noto\ Emoji:antialias=true:size=10, \
+                               xft:icomoon\-feather:style=Regular:size=10,\
+                               -wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1,\
+                               -misc-fontawesome-medium-r-normal--0-0-0-0-p-0-iso10646-1
+URxvt*boldFont:                xft:Operator\ Mono:pixelsize=13:style=Bold:antialias=true
+URxvt*italicFont:              xft:Operator\ Mono:pixelsize=13:style=Book\ Italic:antialias=true
+URxvt*bolditalicFont:          xft:Operator\ Mono:pixelsize=13:style=Bold\ Italic:antialias=true
+
+urxvt*perl-lib:     /usr/lib/urxvt/perl
+urxvt*perl-ext-common:    default,matcher,clipboard,selection-to-clipboard,font-size
+urxvt*perl-matcher:     1
+urxvt*matcher-button:     3
+urxvt*url-launcher:   /usr/bin/firefox
+URxvt*matcher.button: 1
+!URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt*cursorUnderline: 0
+urxvt*letterspace: -1
+urxvt*fading:       20
+!urxvt*fadeColor:    #000000 
+urxvt*cursorBlink:   true
+urxvt*scrollBar:   false
+urxvt*depth:     32 
+urxvt*internalBorder:    5
+urxvt*dynamicColors: on
+urxvt.urgentOnBell:  true
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+rofi.color-enabled: true
+rofi.color-window: #121b21, #fac863, #343d46
+! State:           'bg',    'fg',    'bgalt', 'hlbg',  'hlfg'
+rofi.color-normal: #121b21, #cdd3de, #121b21, #65737e, #cdd3de
+rofi.color-active: #cdd3de, #6699cc, #cdd3de, #6699cc, #d8dee9
+rofi.color-urgent: #cdd3de, #ec5f67, #cdd3de, #ec5f67, #cdd3de
+
+rofi.font: Operator\ Mono\ 14px
+
+rofi.separator-style: solid
+rofi.lines: 5
+rofi.eh: 1
+rofi.width: 33
+rofi.padding:	8
+rofi.opacity: 100
+rofi.bw: 4
+rofi.terminal: urxvt
+rofi.glob: true
+rofi.tokenize: false

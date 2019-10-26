@@ -1,0 +1,20 @@
+#!/bin/bash
+
+BORDER_COLOR=$1
+FIFO_PATH=$2
+old_color=$(bspc config focused_border_color)
+
+while :; do
+  while read -r message; do
+    echo $message
+    if [[ ${message:0:1} == "B" ]]; then
+      old_color=$(bspc config focused_border_color)
+      bspc config focused_border_color "$BORDER_COLOR"
+    fi
+
+    if [[ ${message:0:1} == "E" ]]; then
+      bspc config focused_border_color "$old_color"
+    fi
+  done < $FIFO_PATH
+done
+

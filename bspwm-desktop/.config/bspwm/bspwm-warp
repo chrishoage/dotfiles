@@ -1,0 +1,22 @@
+#!/usr/bin/sh
+
+# which window to be warped to
+dir=$1
+fwid=$(bspc query -N -n $dir)
+
+if [ -n "$fwid" ] ; then
+        wattr wh $fwid | {
+                read width height
+                if [ $width -gt $height ] ; then
+                        split_dir=west
+                else
+                        split_dir=south
+                fi
+                # mark focused node
+                bspc node -g marked
+                # correctly split the "to be warped to" window
+                bspc node $dir -p $split_dir
+                # warp
+                bspc node newest.marked.local -n newest.!automatic.local
+        }
+fi

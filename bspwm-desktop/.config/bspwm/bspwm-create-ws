@@ -1,0 +1,3 @@
+#!/bin/sh
+
+bspc monitor -a $(bspc query -D -m | wc -l | xargs -n1 expr 1 +)
