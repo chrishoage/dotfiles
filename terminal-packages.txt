@@ -1,0 +1,14 @@
+zsh
+stow
+git
+vim
+fzf
+htop
+jq
+lshw
+neofetch
+ranger
+wget
+lnav
+lm_sensors
+tmux
