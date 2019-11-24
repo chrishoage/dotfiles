@@ -65,5 +65,5 @@ xset dpms 0 0 300
 #wm
 compton &
 light-locker &
-redshift &
+redshift -P &
 exec bspwm
