@@ -269,7 +269,7 @@ interval = 1
 [module/temperature]
 type = internal/temperature
 interval = 1
-thermal-zone = 3
+thermal-zone = 2
 warn-temperature = 60
 
 format-prefix = " "
