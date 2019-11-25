@@ -46,9 +46,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-export PATH="$HOME/bin:/usr/local/sbin:$PATH"
-export MANPATH="/usr/local/man:$MANPATH"
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
     printf "Install? [y/N]: "
