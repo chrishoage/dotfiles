@@ -3,117 +3,128 @@
 #
 
 # terminal emulator
-alt + Return
+super + Return
 	urxvt
 
-# window, hidden window, and program launcher
-alt + {_, super + } space
-	rofi -modi "drun,window,hidden:./bin/bspwm-unhide" -show {drun,window} -show-icons -drun-show-actions
+# {program, window} launcher
+super + {_, alt + } space
+	rofi -modi "drun,window,workspaces:rofi-modi-workspaces,hidden:rofi-modi-bspwm-unhide" -show {drun,window} -show-icons -drun-show-actions
 
 # make sxhkd reload its configuration files:
-alt + Escape
+super + Escape
 	pkill -USR1 -x sxhkd
+
+# adjust volume
+XF86Audio{LowerVolume,RaiseVolume,Mute} + {_,shift}
+	pulseaudio-ctl {down,up,mute} {5,1}
+
+# lock computer
+super + Pause
+	sleep 0.5; light-locker-command -a
+
+# screenshot tool
+Print
+	flameshot gui
+
+# keybind reference
+super + question
+	sxhkd-ref
 
 #
 # bspwm hotkeys
 #
 
-# quit bspwm normally
-shift + alt + Escape
-	pkill -x polybar; bspc quit
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
 
 # close and kill
-alt + {_,shift + }w
+super + {_,shift + }w
 	bspc node -{c,k}
 
-# set tiled layout
-alt + k; b
-	bspc desktop -l tiled
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
-# set monocle layout
-alt + k; f
-	bspc desktop -l monocle
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest node
-alt + g
+super + g
 	bspc node -s biggest.local
 
 #
 # state/flags
 #
 
-# set the window state
-alt + k; {t,shift + t,w,shift + f}
+# set the window state {tiled, pseudo_titled, floating, fullscreen}
+super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-# set the node flags
-alt + k; {l,s,p,h}
-	bspc node -g {locked,sticky,private,hidden}
+
+# set the node flags {marked, hidden, locked, sticky, private}
+super + ctrl + {m,v,x,s,p}
+	bspc node -g {marked,hidden,locked,sticky,private}
 
 #
 # focus/swap
 #
 
-# focus the node in the given direction
+# focus/swap the node in the given direction {west, south, north, east}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# warp the focused node in the given direction {west, south, north, east}
 super + alt + {h,j,k,l}
-	bspc node -f {west,south,north,east}
-
-# swap the focused node in the given direction
-ctrl + super + {h,j,k,l}
-	bspc node -s {west,south,north,east}.local
-
-# transplant the focused node in the given direction
-#ctrl + super + {h,j,k,l}
-#	bspc node -n {west,south,north,east}.local
-
-# warp the focused node in the given direction
-ctrl + shift + {h,j,k,l}
-	$HOME/.config/bspwm/bspwm-warp {west,south,north,east}.local
+	bspwm-warp {west,south,north,east}.local
 
 # focus the next/previous node in the current desktop
-#super + alt + {_,shift + }c
-super + alt + {_,shift + }c
+super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus or send the next/previous desktop in the current monitor
-super + alt + {_,shift + }bracket{left,right}
+super + {_,shift + }bracket{left,right}
 	bspc desktop -{f,s} {prev,next}.local
 
 # focus the next/previous monitor
-super + alt + {p,n}
+super + {p,n}
 	bspc monitor -f {prev,next} --follow
 
 # focus the last node/desktop
-alt + {grave,Tab}
+super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + alt + {o,i}
+super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
 # focus or send to the given desktop
-alt + k; alt + {1-9,0}
-	bspc node -d '{1-9,10}'
+super + {_,shift +}{1-9,0}
+	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
-# focus or send to the given desktop
-alt + k; shift + {1-9,0}
-	bspc node -m \^{1-9,10}
+super + alt + {1-9}
+	bspc node -m '^{1-9}'
 
 #
 # preselect
 #
 
-# preselect the direction
-ctrl + alt + {h,j,k,l,c}
-	bspc node -p {west,south,north,east,cancel}
+# preselect the direction {west, south, north, east}
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-ctrl + alt + {1-9}
+super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
 # cancel the preselection for the focused desktop
-ctrl + super + alt + space
+super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
@@ -121,28 +132,13 @@ ctrl + super + alt + space
 #
 
 # expand a window by moving one of its side outward
-alt + k; m : {h,j,k,l}
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-alt + k; m : shift + {h,j,k,l}
-	bspc node -z {left 20 0,bottom 0 -20,top 0 20,right -20 0}
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
-super + alt + {Left,Down,Up,Right}
+super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-# move/resize window
-super + button1
-	bspc pointer -g resize_side
-
-# window manager
-XF86Audio{LowerVolume,RaiseVolume,Mute} + {_,shift}
-	pulseaudio-ctl {down,up,mute} {5,1}
-
-ctrl + shift + Pause
-	sleep 0.5; light-locker-command -a
-#	dm-tool lock
-
-Print
-	flameshot gui

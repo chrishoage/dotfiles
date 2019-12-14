@@ -158,6 +158,7 @@ label-sticky = "STKY "
 ;label-sticky-foreground = #fba922
 label-private = "PRVT "
 ;label-private-foreground = #bd2c40
+label-marked = "MRKD "
 
 [module/bsp-create]
 type = custom/script
@@ -165,7 +166,7 @@ type = custom/script
 format = ""
 format-foreground = ${colors.foreground-alt}
 exec = echo "+"
-click-left = $HOME/.config/bspwm/bspwm-create-ws
+click-left = bspwm-create-ws
 click-right = bspc desktop -r
 
 [module/cpu]

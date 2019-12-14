@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Get the window IDs for the focused workspace
+focused_windows=$(bspc query -N -n .window -d focused)
+
+while read -r wid; do
+  # Find the process id, and use it to look up the process, and grep out the process name
+  process_name=$(ps -e | grep $(xdotool getwindowpid "$wid") | grep -v grep | awk '{print $4}')
+
+  if [[ "$process_name" == 'firefox' ]]; then
+    firefox "$@"
+    exit
+  fi
+
+  if [[ "$process_name" == 'chrome' ]]; then
+    google-chrome-stable "$@"
+    exit
+  fi
+done <<< "$focused_windows"
+
+# We looped through all the windows but didn't find a match
+# Open firefox by default
+firefox "$@"
+

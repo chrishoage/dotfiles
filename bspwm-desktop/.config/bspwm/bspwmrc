@@ -3,7 +3,7 @@
 . $HOME/.cache/wal/colors.sh
 
 SXHKD_FIFO="/tmp/sxhkd-fifo"
-mkfifo $SXHKD_FIFO 
+mkfifo $SXHKD_FIFO
 sxhkd -s $SXHKD_FIFO &
 $HOME/.config/polybar/launch.sh
 
@@ -28,8 +28,8 @@ bspc config automatic_scheme alternate
 bspc config pointer_follows_focus true
 bspc config focus_follows_pointer true
 
-bpsc config pointer_action1 move
-bpsc config pointer_action3 resize_side
+bspc config pointer_action1 resize_side
+bspc config pointer_action3 move
 
 bspc rule -a mpv state='floating'
 bspc rule -a feh state='floating' center='on'
