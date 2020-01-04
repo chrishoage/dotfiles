@@ -14,7 +14,7 @@ super + {_, alt +, shift + } space
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# adjust volume
+# {Lower, Raise, Mute} volume
 XF86Audio{LowerVolume,RaiseVolume,Mute} + {_,shift}
 	pulseaudio-ctl {down,up,mute} {5,1}
 
@@ -34,11 +34,11 @@ super + question
 # bspwm hotkeys
 #
 
-# quit/restart bspwm
+# {quit, restart} bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# close and kill
+# {close, kill} node
 super + {_,shift + }w
 	bspc node -{c,k}
 
@@ -78,7 +78,7 @@ super + ctrl + {m,v,x,s,p}
 # focus/swap
 #
 
-# focus/swap the node in the given direction {west, south, north, east}
+# {focus, swap} the node in the given direction {west, south, north, east}
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
@@ -86,32 +86,33 @@ super + {_,shift + }{h,j,k,l}
 super + alt + {h,j,k,l}
 	bspwm-warp {west,south,north,east}.local
 
-# focus the next/previous node in the current desktop
+# focus the {next, previous} node in the current desktop
 super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
-# focus or send the next/previous desktop in the current monitor
+# focus or send the {next, previous} desktop in the current monitor
 super + {_,shift + }bracket{left,right}
 	bspc desktop -{f,s} {prev,next}.local
 
-# focus the next/previous monitor
+# focus the {previous, next} monitor
 super + {p,n}
 	bspc monitor -f {prev,next} --follow
 
-# focus the last node/desktop
+# focus the last {node, desktop}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
+# focus the {older, newer} node in the focus history
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
+# {focus, send} to the given desktop
 super + {_,shift +}{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
+# sent to the given monitor
 super + alt + {1-9}
 	bspc node -m '^{1-9}'
 
