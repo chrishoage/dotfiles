@@ -33,4 +33,4 @@ bspc config pointer_action3 move
 
 bspc rule -a mpv state='floating'
 bspc rule -a feh state='floating' center='on'
-
+bspc rule -a URxvt:view-updates state='floating' center='on'
