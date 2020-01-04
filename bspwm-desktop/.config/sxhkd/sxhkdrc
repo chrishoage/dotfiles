@@ -6,9 +6,9 @@
 super + Return
 	urxvt
 
-# {program, window} launcher
-super + {_, alt + } space
-	rofi -modi "drun,window,workspaces:rofi-modi-workspaces,hidden:rofi-modi-bspwm-unhide" -show {drun,window} -show-icons -drun-show-actions
+# {program, window, workspaces} launcher
+super + {_, alt +, shift + } space
+	rofi -modi "drun,window,workspaces:rofi-modi-workspaces,hidden:rofi-modi-bspwm-unhide" -show {drun,window,workspaces} -show-icons -drun-show-actions
 
 # make sxhkd reload its configuration files:
 super + Escape
