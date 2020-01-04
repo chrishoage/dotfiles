@@ -94,7 +94,7 @@ modules-left = bspwm bsp-create bspwm-mon
 ;modules-center = xwindow
 ;modules-right =  memory cpu temperature eth-up eth-down fs pulseaudio date yay powermenu
 
-tray-position = right
+tray-position = none
 tray-padding = 2
 
 wm-restack = bspwm
