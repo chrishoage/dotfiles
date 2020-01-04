@@ -60,7 +60,7 @@ super + {equal,plus}
 
 # remove focused workspace
 super + {underscore,minus}
-	bspc desktop {_,'focused.!occupied'} -r
+	bspwm-destroy-ws {-o,_}
 
 #
 # state/flags
