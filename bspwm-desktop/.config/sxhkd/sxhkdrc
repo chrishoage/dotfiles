@@ -54,6 +54,14 @@ super + y
 super + g
 	bspc node -s biggest.local
 
+# create a workspace
+super + {equal,plus}
+	bspwm-create-ws {_,-f}
+
+# remove focused workspace
+super + {underscore,minus}
+	bspc desktop {_,'focused.!occupied'} -r
+
 #
 # state/flags
 #

@@ -1,3 +1,26 @@
 #!/bin/sh
 
-bspc monitor -a $(bspc query -D -m | wc -l | xargs -n1 expr 1 +)
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+follow=0
+
+while getopts "f" opt; do
+  case "$opt" in
+  f) follow=1
+     ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+[ "${1:-}" = "--" ] && shift
+
+NEW_DESKTOP=$(bspc query -D -m | wc -l | xargs -n1 expr 1 +)
+bspc monitor -a $NEW_DESKTOP
+
+if (( follow == 1 )); then
+  bspc desktop -f focused:^$NEW_DESKTOP
+fi
+
+echo $NEW_DESKTOP
+
