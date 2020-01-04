@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
 if [[ -n $@ ]]; then
-  eval "${1}" &>/dev/null & disown;
+  eval "~/workspaces/${1}" &>/dev/null & disown;
   exit
 else
-  find ~/workspaces -maxdepth 1 -type f
+  find ~/workspaces -maxdepth 1 -type f -printf '\n%A+ %p' | sort -rn -k1 | cut -d" " -f2 | cut -d"/" -f5
 fi
 
