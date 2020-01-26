@@ -70,6 +70,12 @@ urxvt.urgentOnBell:  true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+info-term*cursorBlink:   true
+info-term*scrollBar:   false
+info-term*depth:     32 
+info-term*internalBorder:    5
+info-term*dynamicColors: on
+
 rofi.color-enabled: true
 rofi.color-window: #121b21, #fac863, #343d46
 ! State:           'bg',    'fg',    'bgalt', 'hlbg',  'hlfg'
