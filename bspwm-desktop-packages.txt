@@ -3,6 +3,7 @@ sxhkd
 polybar
 dunst
 rofi
+frece
 arc-gtk-theme
 papirus-icon-theme
 compton-tryone-git

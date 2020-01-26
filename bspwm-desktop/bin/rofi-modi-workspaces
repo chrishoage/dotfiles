@@ -1,9 +1,21 @@
 #!/bin/bash
 
+DB_FILE="$HOME/.cache/frece_workspaces.db"
+WORKSPACE_DIR="$HOME/workspaces"
+
+WORKSPACES=$(find ~/workspaces -maxdepth 1 -type f | cut -d'/' -f5)
+
+if [ ! -f $DB_FILE ]; then
+  frece init $DB_FILE <(echo "$WORKSPACES")
+else
+  frece update $DB_FILE <(echo "$WORKSPACES") --purge-old
+fi
+
 if [[ -n $@ ]]; then
-  eval "~/workspaces/${1}" &>/dev/null & disown;
+  frece increment $DB_FILE ${1}
+  eval "$WORKSPACE_DIR/${1}" &>/dev/null & disown;
   exit
 else
-  find ~/workspaces -maxdepth 1 -type f -printf '\n%A+ %p' | sort -rn -k1 | cut -d" " -f2 | cut -d"/" -f5
+  frece print $DB_FILE
 fi
 
