@@ -2,7 +2,11 @@
 
 . $HOME/.cache/wal/colors.sh
 
-sxhkd &
+SXHKD_FIFO=/tmp/sxhkd-key-fifo
+mkfifo $SXHKD_FIFO
+sxhkd -s $SXHKD_FIFO &
+sxhkd-chord-color -f $SXHKD_FIFO -c "$color5" &
+
 $HOME/.config/polybar/launch.sh
 
 gebaard -b

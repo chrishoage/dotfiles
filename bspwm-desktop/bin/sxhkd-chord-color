@@ -1,0 +1,92 @@
+#!/bin/bash
+
+usage() {
+  echo "\
+Usage: $(basename $0) -f FIFO_PATH -c BORDER_COLOR
+
+Set bspc config focused_border_color when sxhkd chord begins
+Reset to previous color when chord ends
+
+Options:
+  -f FIFO_PATH      sxhkd FIFO pipe
+  -c BORDER_COLOR   hex color for border
+  -d[d]             set debug level
+  -h                display this help
+"
+}
+
+exit_abnormal() {
+  usage
+  exit 1
+}
+
+DEBUG=0
+
+while getopts ":f:c:dh" options; do
+  case "${options}" in
+    f)
+      FIFO_PATH=${OPTARG}
+      if [[ ! -p $FIFO_PATH ]]; then
+        echo "Error: --fifo $FIFO_PATH not a FIFO pipe"
+        exit_abnormal
+      fi
+      ;;
+    c)
+      BORDER_COLOR=${OPTARG}
+      ;;
+    h)
+      usage
+      exit
+      ;;
+    d)
+      DEBUG=$((DEBUG + 1))
+      ;;
+    :)
+      echo "Error: -${OPTARG} requires an argument"
+      exit_abnormal
+      ;;
+    *)
+      exit_abnormal
+      ;;
+  esac
+done
+
+if [ $# -eq 0 ]; then
+  echo "Error: No arguments provided"
+  exit_abnormal
+fi
+
+if [ -z "$BORDER_COLOR" ]; then
+  echo "Error: missing -c argument"
+  exit_abnormal
+fi
+
+if [ $DEBUG -gt 0 ]; then
+  echo "fifo: $FIFO_PATH"
+  echo "color: $BORDER_COLOR"
+fi
+
+while :; do
+  while read -r message; do
+    if [ $DEBUG -gt 1 ]; then
+      echo $message
+    fi
+    prefix=${message:0:1}
+    case $prefix in
+      B)
+        LAST_COLOR=$(bspc config focused_border_color)
+        if [ $DEBUG -gt 0 ]; then
+          echo "Storing color: $LAST_COLOR"
+          echo "Setting color: $BORDER_COLOR"
+        fi
+        bspc config focused_border_color "$BORDER_COLOR"
+        ;;
+      E)
+        if [ $DEBUG -gt 0 ]; then
+          echo "Setting color: $LAST_COLOR"
+        fi
+        bspc config focused_border_color "$LAST_COLOR"
+    esac
+  done < $FIFO_PATH
+done
+

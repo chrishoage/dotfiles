@@ -71,7 +71,7 @@ super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags {marked, hidden, locked, sticky, private}
-super + ctrl + {m,v,x,s,p}
+super + ctrl + f ; {m,h,l,s,p}
 	bspc node -g {marked,hidden,locked,sticky,private}
 
 #
