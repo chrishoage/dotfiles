@@ -25,7 +25,6 @@ bspc config gapless_monocle      false
 bspc config initial_polarity second_child
 bspc config automatic_scheme alternate
 
-bspc config ignore_ewmh_focus true
 bspc config pointer_follows_focus true
 bspc config focus_follows_pointer true
 
