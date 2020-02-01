@@ -1,7 +1,7 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-gitgutter'
+Plug 'vim-scripts/vim-gitgutter'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -65,6 +65,8 @@ set tabstop=2
 set shiftwidth=2
 " Read modeline
 set modeline
+
+let g:airline_powerline_fonts = 1
 
 set t_Co=256
 if filereadable(expand('~/.cache/wal/colors'))
