@@ -15,7 +15,7 @@ foreground-alt = ${xrdb:color8}
 primary = ${xrdb:color1:#6699CC}
 secondary = ${xrdb:color6:#C594C5}
 selected = ${xrdb:color3}
-alert = ${xrdb:color1:#EC5f67}
+alert = ${xrdb:color9:#EC5f67}
 
 [global/wm]
 margin-top = 5

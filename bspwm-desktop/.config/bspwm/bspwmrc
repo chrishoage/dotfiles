@@ -7,6 +7,8 @@ mkfifo $SXHKD_FIFO
 sxhkd -s $SXHKD_FIFO &
 sxhkd-chord-color -f $SXHKD_FIFO -c "$color5" &
 
+bspwm-urgent-border "$color9" &
+
 $HOME/.config/polybar/launch.sh
 
 gebaard -b
