@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# configure x
+
+# merge user Xresources
+xrdb -merge $HOME/.Xresources
+
+# swap capslock and ctrl
+setxkbmap -option 'caps:ctrl_modifier'
+
+# use a normal cursor
+xsetroot -cursor_name left_ptr &
+
+# set gtk session for qt apps
+export DESKTOP_SESSION=gnome
+
+# detect display profile and change to it
+autorandr -c
+
+# configure desktop
+
+# set wal theme colors
+wal --theme gatito -a 80
+. $HOME/.cache/wal/colors.sh
+
+#set wallpaper
+feh --bg-fill $HOME/.wallpapers/blue-red-poly.jpg &
+
+# auto start
+compton &
+light-locker &
+redshift-gtk &
+flameshot &
+gebaard -b

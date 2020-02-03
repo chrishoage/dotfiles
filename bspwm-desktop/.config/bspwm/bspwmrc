@@ -11,12 +11,10 @@ bspwm-urgent-border "$color9" &
 
 $HOME/.config/polybar/launch.sh
 
-gebaard -b
-
 bspc monitor -d 1
 
 bspc config border_width         4
-bspc config window_gap          5
+bspc config window_gap           5
 
 bspc config focused_border_color "$color4"
 

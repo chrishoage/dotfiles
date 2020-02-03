@@ -19,4 +19,3 @@ light-locker
 lightdm-mini-greeter-git
 noto-fonts-emoji
 wmutils-git
-xinit-xsession
