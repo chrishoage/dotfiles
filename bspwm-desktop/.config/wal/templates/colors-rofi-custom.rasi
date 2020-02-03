@@ -1,35 +1,35 @@
 * {{
     active-background: {color2};
-    active-foreground: @background;
+    active-foreground: {background};
     normal-background: @background;
     normal-foreground: @foreground;
     urgent-background: {color1};
     urgent-foreground: @foreground;
 
-    alternate-active-background: @background;
-    alternate-active-foreground: @foreground;
-    alternate-normal-background: @background;
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-background: @background;
-    alternate-urgent-foreground: @foreground;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    alternate-normal-background: @normal-background;
+    alternate-normal-foreground: @normal-foreground;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
 
-    selected-active-background: {color1};
-    selected-active-foreground: @background;
-    selected-normal-background: {color4};
-    selected-normal-foreground: @background;
-    selected-urgent-background: {color3};
-    selected-urgent-foreground: @background;
+    selected-active-background: @selected;
+    selected-active-foreground: @active-background;
+    selected-normal-background: @selected;
+    selected-normal-foreground: {background};
+    selected-urgent-background: @selected;
+    selected-urgent-foreground: @urgent-background;
 
     background-color: @background;
-    background: {background};
+    background: transparent;
     foreground: {foreground};
+    selected: {color4};
     border-color: {color4};
-    spacing: 2;
     font: "Operator Mono Book 14";
 }}
 
 #window {{
-    background-color: @background;
+    background-color: {background.rgba};
     border: 0;
     padding: 2.5ch;
 }}
@@ -37,6 +37,7 @@
 #mainbox {{
     border: 0;
     padding: 0;
+    children: [inputbar, message, mode-switcher, listview];
 }}
 
 #message {{
@@ -51,7 +52,7 @@
 
 #inputbar {{
     margin: 0px 0px 5px 0px;
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator,num-filtered-rows,num-rows ];
 }}
 
 #textbox-prompt-colon {{
@@ -70,13 +71,16 @@
     padding: 2px 0px 0px;
 }}
 
+#mode-switcher {{
+  margin: 10px 0px 10px;
+}}
+
 #element {{
     border: 0;
     padding: 5px 10px;
 }}
 
 #element.normal.normal {{
-    /*background-color: @normal-background;*/
     text-color: @normal-foreground;
 }}
 
@@ -134,6 +138,7 @@
 
 #button {{
     text-color: @normal-foreground;
+    padding: 10px 0px;
 }}
 
 #button.selected {{
