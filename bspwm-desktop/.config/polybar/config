@@ -52,7 +52,6 @@ font-2 = Siji:pixelsize=10;0
 font-3 = icomoon\-feather:style=Regular:size=11;3
 
 modules-left = bspwm bsp-create bspwm-mon
-;modules-center = xwindow
 modules-right =  memory cpu temperature eth-up eth-down fs mic pulseaudio date yay powermenu
 
 tray-position = right
@@ -86,13 +85,9 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = Operator\ Mono:pixelsize=11;2:style=Regular
-font-1 = FontAwesome:size=10;3
-font-2 = Siji:pixelsize=10;0
-font-3 = icomoon\-feather:style=Regular:size=11;3
+font-1 = icomoon\-feather:style=Regular:size=11;3
 
 modules-left = bspwm bsp-create bspwm-mon
-;modules-center = xwindow
-;modules-right =  memory cpu temperature eth-up eth-down fs pulseaudio date yay powermenu
 
 tray-position = none
 tray-padding = 2
@@ -123,8 +118,6 @@ format = <label-state>
 
 ws-icon-default = x
 
-;label-dimmed-foreground = ${colors.foreground-alt}
-
 label-focused = %index%
 label-focused-background = ${colors.foreground}
 label-focused-foreground = ${colors.background}
@@ -153,11 +146,8 @@ label-tiled = " "
 label-fullscreen = " "
 label-floating = "FLT "
 label-locked = "LKD "
-;label-locked-foreground = #bd2c40
 label-sticky = "STKY "
-;label-sticky-foreground = #fba922
 label-private = "PRVT "
-;label-private-foreground = #bd2c40
 label-marked = "MRKD "
 
 [module/bsp-create]
@@ -237,11 +227,9 @@ type = internal/pulseaudio
 ;sink = alsa_output.pci-0000_00_1f.3.analog-surround-51
 
 ; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
-; Default: true
 use-ui-max = false
 
 ; Interval for volume increase/decrease (in percent points)
-; Default: 5
 interval = 5
 
 format-volume = <ramp-volume><label-volume>
@@ -262,7 +250,6 @@ label-volume = %percentage:2%%
 type = custom/script
 exec = "~/.config/polybar/scripts/mic-input-state.sh"
 click-left = "pulseaudio-ctl mute-input"
-;format-prefix = " "
 format-foreground = ${colors.foreground-alt}
 
 interval = 1
@@ -277,17 +264,16 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format = <label>
 format-underline = ${root.underline-color}
-format-warn = <ramp><label-warn>
+
+format-warn-prefix = " "
+format-warn = <label-warn>
+format-warn-prefix-foreground = ${colors.foreground-alt}
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
