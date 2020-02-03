@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# source wal colors.
+source ~/.cache/wal/colors.sh
+
+# export envar with alpha set.
+
+alpha_hex=$(printf '%x\n' $(($alpha * 255 / 100)))
+export bg_alpha="#$alpha_hex${background/'#'}"
+
 # Terminate already running bar instances
 killall -q polybar
 

@@ -27,3 +27,10 @@ ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
 # Restart dunst with the new color scheme
 pkill dunst
 dunst &
+
+# ===================
+# ===== polybar =====
+# ===================
+
+# Restart polybar to pick up new alpha
+$HOME/.config/polybar/launch.sh
