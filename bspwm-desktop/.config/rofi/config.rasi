@@ -1,0 +1,10 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus Dark";
+  drun-show-actions: true;
+  modi: "drun,window,workspaces:rofi-modi-workspaces,hidden:rofi-modi-bspwm-unhide";
+  sidebar-mode: true;
+  theme:"~/.cache/wal/colors-rofi-custom.rasi";
+}
+
+/* vim:ft=css

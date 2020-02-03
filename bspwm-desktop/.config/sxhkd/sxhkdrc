@@ -8,7 +8,7 @@ super + Return
 
 # {program, window, workspaces} launcher
 super + {_, alt +, shift + } space
-	rofi -modi "drun,window,workspaces:rofi-modi-workspaces,hidden:rofi-modi-bspwm-unhide" -show {drun,window,workspaces} -show-icons -drun-show-actions
+	rofi -show {drun,window,workspaces}
 
 # make sxhkd reload its configuration files:
 super + Escape
