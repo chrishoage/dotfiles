@@ -321,7 +321,7 @@ menu-2-1-exec = menu-open-0
 [module/yay]
 type = custom/script
 exec = "~/.config/polybar/scripts/updates-arch-combined.sh"
-click-left = "urxvt -name info-term -geometry 60x30 -hold -e /bin/sh -c 'checkupdates && yay -Qum'"
+click-left = termite --name info-term --hold -e '/bin/sh -c "checkupdates; yay -Qum"'
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 

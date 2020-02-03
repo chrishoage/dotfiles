@@ -54,8 +54,6 @@ wal --theme gatito -a 80 -o $HOME/.config/wal/done.sh
 #set wallpaper
 feh --bg-fill ~/.wallpapers/blue-red-poly.jpg &
 
-urxvtd &
-
 # use a normal cursor
 xsetroot -cursor_name left_ptr &
 

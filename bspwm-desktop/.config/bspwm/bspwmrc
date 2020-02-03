@@ -35,4 +35,4 @@ bspc config pointer_action3 move
 
 bspc rule -a mpv state='floating'
 bspc rule -a feh state='floating' center='on'
-bspc rule -a URxvt:info-term state='floating' center='on'
+bspc rule -a Termite:info-term state='floating' center='on'

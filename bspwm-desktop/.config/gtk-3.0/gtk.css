@@ -1,3 +1,7 @@
 .thunar {
   -gtk-icon-style: regular;
 }
+
+VteTerminal, vte-terminal {
+  padding: 5px;
+}

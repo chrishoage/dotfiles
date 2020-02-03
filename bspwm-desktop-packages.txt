@@ -11,7 +11,7 @@ autorandr
 redshift
 python-pywal
 flameshot
-rxvt-unicode
+termite
 simplescreenrecorder
 thunar
 pulseaudio-ctl
