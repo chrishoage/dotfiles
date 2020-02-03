@@ -64,7 +64,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "{color6}"
+    frame_color = "{color4}"
 
     # Define a color for the separator.
     # possible values are:
@@ -160,13 +160,13 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/32x32/apps/
 
     ### History ###
 
@@ -213,7 +213,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 5
+    corner_radius = 0
 
     ### Legacy
 
@@ -411,4 +411,9 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+
+[slack]
+  appname="Slack"
+  new_icon="slack"
+
 # vim: ft=cfg
