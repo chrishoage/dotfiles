@@ -15,3 +15,6 @@ Thumbs.db
 
 # vim droppings
 terminal/.vim/.netrwhist
+
+# workspace configuration files
+.vscode
