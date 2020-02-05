@@ -18,3 +18,6 @@ terminal/.vim/.netrwhist
 
 # workspace configuration files
 .vscode
+
+# fc-cache files
+bspwm-desktop/.local/share/fonts/.uuid
