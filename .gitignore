@@ -13,9 +13,6 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# vim droppings
-terminal/.vim/.netrwhist
-
 # workspace configuration files
 .vscode
 

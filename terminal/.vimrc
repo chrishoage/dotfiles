@@ -1,7 +1,14 @@
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-scripts/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -36,6 +43,7 @@ let mapleader=","
 set binary
 set noeol
 " Centralize backups, swapfiles and undo history
+silent !mkdir -p ~/.vim/{backups,swaps} > /dev/null 2>&1
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
