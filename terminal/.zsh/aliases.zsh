@@ -1,5 +1,3 @@
-alias k="k -h"
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
@@ -8,5 +6,10 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
 
-# Flush Directory Service cache
-alias flush="sudo discoveryutil mdnsflushcache && dscacheutil -flushcache && killall -HUP mDNSResponder"
+# ls
+alias l="ls -lh"
+alias la="ls -lah"
+alias k="k -h"
+
+# git
+alias g="git"
