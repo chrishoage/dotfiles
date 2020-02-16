@@ -14,10 +14,14 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 	# Switch to a branch, creating it if necessary
-	go = checkout -B
+	co = checkout -B
+	# Most recent branches passed to fzf
+	cof = "!git log -g --grep-reflog 'checkout:' --format='%gs' | cat -n | sed -E 's/^\\s+([0-9]+).*from (.*) to .*/\\2/g' | awk '!x[$0]++' | fzf | xargs git checkout"
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
+	# list local and remote branches
 	branches = branch -a
+	# list remotes
 	remotes = remote -v
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
@@ -35,8 +39,8 @@
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 	# Remove branches that have already been merged with master
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-	# Open conflicted files in sublime text
-	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; st `f`"
+	# Open conflicted files in vs code
+	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; code `f`"
 	# Add all conflicted files
 	add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
