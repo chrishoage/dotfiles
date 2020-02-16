@@ -1,20 +1,29 @@
 #!/bin/bash
 set -e
-set -o pipefail
 
 : "${PINENTRY_PROGRAM:=pinentry-rofi}"
 
+MAX_RETRY=3
+retry=0
+
 login() {
-  OP_SESS_EVAL=$($PINENTRY_PROGRAM <<< GETPIN | grep -oP 'D \K.*' | op signin my)
+  set +e
+  OP_SESS_EVAL=$($PINENTRY_PROGRAM <<< GETPIN | grep -oP 'D \K.*' | op signin my 2>/dev/null)
+  set -e
   eval $OP_SESS_EVAL
   echo "$OP_SESS_EVAL" | tee ~/.op/session
 }
 
 check-op-status() {
   set +e
-  op list vaults >/dev/null
-  LOGGED_IN=${PIPESTATUS[0]}
+  op list vaults >/dev/null 2>&1
+  LOGGED_IN=$?
   set -e
+
+  if [ "$retry" -ge "$MAX_RETRY" ]; then
+    echo "max retries reached"
+    exit 1
+  fi
 
   if [ $LOGGED_IN -eq 127 ]; then
     echo "1password CLI tool 'op' not found"
@@ -22,6 +31,7 @@ check-op-status() {
   fi
 
   if [ ! $LOGGED_IN -eq 0 ]; then
+    retry=$((retry + 1))
     login
     check-op-status
   else
