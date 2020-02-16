@@ -4,8 +4,6 @@ These dotfiles setup my terminal and desktop environment.
 
 ## Screenshots
 
-![terminal](screenshots/terminal.png)
-
 ![bspwm-desktop](screenshots/bspwm-desktop.png)
 
 ## Installation
