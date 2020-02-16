@@ -12,6 +12,7 @@ zplug "lib/completion", from:oh-my-zsh, defer:0
 zplug "plugins/rsync", from:oh-my-zsh
 zplug "laggardkernel/zsh-gpg-agent", if:"which gpg-agent"
 zplug "rupa/z", use:z.sh, defer:0
+zplug "changyuheng/fz", defer:1
 zplug "supercrabtree/k"
 
 zplug "~/.zsh", from:local
