@@ -3,7 +3,7 @@
 DB_FILE="$HOME/.cache/frece_workspaces.db"
 WORKSPACE_DIR="$HOME/workspaces"
 
-WORKSPACES=$(find ~/workspaces -maxdepth 1 -type f | cut -d'/' -f5)
+WORKSPACES=$(find ~/workspaces -maxdepth 1 -type f | sed 's!.*/!!')
 
 if [ ! -f $DB_FILE ]; then
   frece init $DB_FILE <(echo "$WORKSPACES")
@@ -18,4 +18,3 @@ if [[ -n $@ ]]; then
 else
   frece print $DB_FILE
 fi
-
