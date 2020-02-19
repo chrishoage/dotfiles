@@ -14,7 +14,7 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 	# Switch to a branch, creating it if necessary
-	co = checkout -B
+	co = checkout -b
 	# Most recent branches passed to fzf
 	cof = "!git log -g --grep-reflog 'checkout:' --format='%gs' | cat -n | sed -E 's/^\\s+([0-9]+).*from (.*) to .*/\\2/g' | awk '!x[$0]++' | fzf | xargs git checkout"
 	# Show verbose output about tags, branches or remotes
