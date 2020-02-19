@@ -23,8 +23,12 @@ autorandr -c
 wal --theme gatito -a 80
 . $HOME/.cache/wal/colors.sh
 
-#set wallpaper
-feh --bg-fill $HOME/.wallpapers/blue-red-poly.jpg &
+#set last used wallpaper, or default
+if [ -f "$HOME/.fehbg" ]; then
+  $HOME/.fehbg &
+else
+  feh --bg-fill $HOME/.wallpapers/blue-red-poly.jpg &
+fi
 
 # auto start
 compton &

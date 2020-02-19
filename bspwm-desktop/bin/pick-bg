@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DEFAULT_DIR="$HOME/.wallpapers"
+WALLPAPER_DIR="${1:-$DEFAULT_DIR}"
+
+WALLPAPER=$(find -L "$WALLPAPER_DIR" -maxdepth 1 -type f | sed 's!.*/!!' | sort | fzf --no-multi --preview "feh --no-fehbg --bg-fill $WALLPAPER_DIR/{}" --preview-window=0)
+
+if [ -n "$WALLPAPER" ]; then
+  feh --bg-fill "$WALLPAPER_DIR/$WALLPAPER"
+  sudo cp "$WALLPAPER_DIR/$WALLPAPER" /usr/share/backgrounds/custom/wallpaper
+elif [ -f "$HOME/.fehbg" ]; then
+  $HOME/.fehbg
+fi
