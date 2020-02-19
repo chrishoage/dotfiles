@@ -29,8 +29,8 @@ color15='{color15}'
 # FZF colors
 export FZF_DEFAULT_OPTS="
     $FZF_DEFAULT_OPTS
-    --color fg:7,bg:0,hl:1,fg+:232,bg+:1,hl+:255
-    --color info:7,prompt:2,spinner:1,pointer:232,marker:1
+    --color fg:15,bg:-1,hl:3,fg+:7,bg+:8,hl+:3
+    --color info:7,prompt:2,spinner:6,pointer:6,marker:2
 "
 
 # Fix LS_COLORS being unreadable.
