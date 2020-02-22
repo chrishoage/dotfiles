@@ -26,3 +26,20 @@ function dataurl() {
   echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
+# allow l and la alias to work when exa is not installed
+function l() {
+  if (( $+commands[exa] )); then
+    exa -l "$@"
+  else
+    ls -lh "$@"
+  fi
+}
+
+# alias la to exa or ls
+function la() {
+  if (( $+commands[exa] )); then
+    exa -la "$@"
+  else
+    ls -lah "$@"
+  fi
+}

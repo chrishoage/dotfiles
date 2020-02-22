@@ -6,10 +6,5 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
 
-# ls
-alias l="ls -lh"
-alias la="ls -lah"
-alias k="k -h"
-
 # git
 alias g="git"
