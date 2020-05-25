@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+checkupdates;
+yay -Qum
+
+read -s -n 1 k <&1
+if [[ $k = q ]]; then
+  exit
+fi

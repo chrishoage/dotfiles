@@ -1,0 +1,13 @@
+#!/bin/bash
+
+info_term_name='info-term'
+
+while getopts "l" opt; do
+  case "$opt" in
+    l) info_term_name='info-term-large';;
+  esac
+done
+
+EXEC_CMD=${@:$OPTIND:1}
+
+termite --name $info_term_name -e "$EXEC_CMD" &> /dev/null &
