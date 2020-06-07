@@ -21,5 +21,8 @@ light-locker
 lightdm-mini-greeter-git
 noto-fonts-emoji
 wmutils-git
+xtitle-git
+1password-cli
+firefox
 bandwhich
 htop
