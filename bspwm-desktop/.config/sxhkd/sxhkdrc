@@ -7,8 +7,11 @@ super + Return
 	termite
 
 # {program, window, workspaces} launcher
-super + {_, alt +, shift + } space
-	rofi -show {drun,window,workspaces}
+super + space
+	rofi -show drun
+
+super + alt + space; {space, w, s, e, h}
+	rofi -show {drun,window,workspaces,emoji,hidden}
 
 # make sxhkd reload its configuration files:
 super + Escape

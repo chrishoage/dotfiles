@@ -4,6 +4,7 @@ sxhkd
 polybar
 dunst
 rofi
+rofi-emoji
 frece
 arc-gtk-theme
 papirus-icon-theme
