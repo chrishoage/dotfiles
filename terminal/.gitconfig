@@ -19,7 +19,9 @@
   cob = checkout -b
 	# Most recent branches passed to fzf
 	cof = "!git log -g --grep-reflog 'checkout:' --format='%gs' | cat -n | sed -E 's/^\\s+([0-9]+).*from (.*) to .*/\\2/g' | awk '!x[$0]++' | fzf | xargs git checkout"
-	# Show verbose output about tags, branches or remotes
+  # Shortcut to cherry-pick
+  cp = cherry-pick
+  # Show verbose output about tags, branches or remotes
 	tags = tag -l
 	# list local and remote branches
 	branches = branch -a
