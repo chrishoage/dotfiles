@@ -181,10 +181,10 @@ type = internal/network
 interface = eno2
 interval = 1
 
-format-connected-prefix = %{A1:info-term -l "nethogs":} %{A}
+format-connected-prefix = %{A1:info-term -l "bandwhich":} %{A}
 format-connected-prefix-foreground = ${colors.foreground-alt}
 format-connected-foreground = ${colors.foreground}
-label-connected = %{A1:info-term -l "nethogs":}%downspeed:8%%{A}
+label-connected = %{A1:info-term -l "bandwhich":}%downspeed:8%%{A}
 
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground}
@@ -194,10 +194,10 @@ type = internal/network
 interface = eno2
 interval = 1
 
-format-connected-prefix = %{A1:info-term -l "nethogs -s":} %{A}
+format-connected-prefix = %{A1:info-term -l "bandwhich -s":} %{A}
 format-connected-prefix-foreground = ${colors.foreground-alt}
 format-connected-foreground = ${colors.foreground}
-label-connected = %{A1:info-term -l "nethogs -s":}%upspeed:8%%{A}
+label-connected = %{A1:info-term -l "bandwhich -s":}%upspeed:8%%{A}
 
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground}
