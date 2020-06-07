@@ -1,2 +1,3 @@
-autofit-larger=90%x90%
-
+screen=0
+autofit-larger=75%
+geometry=50%:50%
