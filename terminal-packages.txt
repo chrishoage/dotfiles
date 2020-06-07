@@ -1,4 +1,5 @@
 exa
+ripgrep
 fzf
 git
 htop
