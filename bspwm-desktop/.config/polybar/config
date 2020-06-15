@@ -52,7 +52,7 @@ font-2 = Siji:pixelsize=10;0
 font-3 = icomoon\-feather:style=Regular:size=11;3
 
 modules-left = bspwm bsp-create bspwm-mon
-modules-right =  memory cpu temperature eth-up eth-down fs mic pulseaudio date yay powermenu
+modules-right =  memory cpu temperature eth-up eth-down fs mic pulseaudio bluetooth date yay powermenu
 
 tray-position = right
 tray-padding = 2
@@ -313,6 +313,11 @@ format-prefix-foreground = ${colors.foreground-alt}
 
 interval = 300
 
+
+[module/bluetooth]
+type = custom/script
+exec = "~/.config/polybar/scripts/bluetooth-power-state.sh"
+click-left = "~/.config/polybar/scripts/bluetooth-power-state.sh toggle"
 
 ; vim: set syntax=dosini:
 ; code: language=ini
