@@ -14,9 +14,6 @@ xsetroot -cursor_name left_ptr &
 # set gtk session for qt apps
 export DESKTOP_SESSION=gnome
 
-# detect display profile and change to it
-autorandr -c
-
 # configure desktop
 
 # set wal theme colors
