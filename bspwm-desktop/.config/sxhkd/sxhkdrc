@@ -6,10 +6,11 @@
 super + Return
 	termite
 
-# {program, window, workspaces} launcher
+# program launcher
 super + space
 	rofi -show drun
 
+# {program, window, workspace, emoji, hidden window} launcher
 super + alt + space; {space, w, s, e, h}
 	rofi -show {drun,window,workspaces,emoji,hidden}
 
