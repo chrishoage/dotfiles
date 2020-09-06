@@ -102,7 +102,7 @@ super + {p,n}
 	bspc monitor -f {prev,next} --follow
 
 # focus the last {node, desktop}
-super + {grave,Tab}
+super + {shift +,_} Tab
 	bspc {node,desktop} -f last
 
 # focus the {older, newer} node in the focus history
