@@ -28,7 +28,7 @@ else
 fi
 
 # auto start
-compton &
+picom --experimental-backends -b &
 light-locker &
 redshift-gtk &
 flameshot &
