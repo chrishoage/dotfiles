@@ -116,7 +116,7 @@ super + {o,i}
 super + {_,shift +}{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
-# sent to the given monitor
+# send focused node to the given monitor
 super + alt + {1-9}
 	bspc node -m '^{1-9}'
 
