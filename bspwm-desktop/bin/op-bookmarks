@@ -3,36 +3,6 @@ set -e
 
 eval $(op-login)
 
-# kill any previous subshells
-for pid in $(pidof -x ${BASH_SOURCE[0]}); do
-  if [ $pid != $$ ]; then
-    kill -9 $pid
-  fi 
-done
-
-OP_BOOKMARK_CACHE_FILE=/tmp/op-bookmarks.json
-CLEANUP_SECONDS=30
 FOLDER=$1
 
-# cache json for multiple calls
-if [ ! -f $OP_BOOKMARK_CACHE_FILE ]; then
-  op get item "bookmarks" > $OP_BOOKMARK_CACHE_FILE 
-fi
-
-# update the mod time of the cache file for deletion
-touch $OP_BOOKMARK_CACHE_FILE
-
-BOOKMARKS=$(cat $OP_BOOKMARK_CACHE_FILE | jq ".details.sections[] | select(.title == \"$FOLDER\") | .fields[].v" | xargs)
-
-echo $BOOKMARKS
-
-(
-  sleep $CLEANUP_SECONDS
-
-  if [ ! -f $OP_BOOKMARK_CACHE_FILE ]; then
-    exit
-  fi
-
-  rm $OP_BOOKMARK_CACHE_FILE
-) >/dev/null 2>&1 &
-
+op --cache get item "bookmarks"| jq ".details.sections[] | select(.title == \"$FOLDER\") | .fields[].v" | xargs

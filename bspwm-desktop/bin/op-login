@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-: "${PINENTRY_PROGRAM:=pinentry-rofi}"
+: "${PINENTRY_PROGRAM:=pinentry-qt}"
 
 MAX_RETRY=3
 retry=0
@@ -11,22 +11,21 @@ login() {
   OP_SESS_EVAL=$($PINENTRY_PROGRAM <<< GETPIN | grep -oP 'D \K.*' | op signin my 2>/dev/null)
   set -e
   eval $OP_SESS_EVAL
-  echo "$OP_SESS_EVAL" | tee ~/.op/session
 }
 
 check-op-status() {
   set +e
-  op list vaults >/dev/null 2>&1
+  op --cache --session $OP_SESSION_my list items >/dev/null 2>&1
   LOGGED_IN=$?
   set -e
 
   if [ "$retry" -ge "$MAX_RETRY" ]; then
-    echo "max retries reached"
+    echo 'echo "max retries reached"'
     exit 1
   fi
 
   if [ $LOGGED_IN -eq 127 ]; then
-    echo "1password CLI tool 'op' not found"
+    echo 'echo "1password CLI tool `op` not found"'
     exit 2
   fi
 
@@ -35,11 +34,9 @@ check-op-status() {
     login
     check-op-status
   else
-    cat ~/.op/session
+    op --session $OP_SESSION_my signin my
   fi
 }
-
-source ~/.op/session
 
 if [[ ! -v OP_SESSION_my ]]; then
   login
