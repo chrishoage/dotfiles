@@ -30,6 +30,7 @@ fi
 # auto start
 picom --experimental-backends -b &
 light-locker &
+redshift -x
 redshift-gtk &
 flameshot &
 gebaard -b &
