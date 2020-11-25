@@ -49,7 +49,7 @@ module-margin-right = 1
 font-0 = Operator\ Mono\ Medium:pixelsize=11;2:style=Regular
 font-1 = icomoon\-feather:style=Regular:size=11;3
 
-modules-left = bspwm bsp-create bspwm-mon
+modules-left = bspwm bsp-create bspwm-mon player
 modules-right =  memory cpu temperature eth-up eth-down fs mic pulseaudio bluetooth date yay powermenu
 
 tray-position = right
@@ -316,6 +316,11 @@ interval = 300
 type = custom/script
 exec = "~/.config/polybar/scripts/bluetooth-power-state.sh"
 click-left = "~/.config/polybar/scripts/bluetooth-power-state.sh toggle"
+
+[module/player]
+type = custom/script
+exec = "playerctl metadata --player=firefox,playerctld --follow  --format '{{ artist }} - {{ title }}' 2>/dev/null"
+tail = true
 
 ; vim: set syntax=dosini:
 ; code: language=ini

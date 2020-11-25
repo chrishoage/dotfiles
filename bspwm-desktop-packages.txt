@@ -18,6 +18,7 @@ simplescreenrecorder
 thunar
 pulseaudio
 pulseaudio-ctl
+playerctl
 light-locker
 lightdm-mini-greeter-git
 noto-fonts-emoji

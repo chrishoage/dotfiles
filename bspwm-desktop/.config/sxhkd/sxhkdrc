@@ -22,6 +22,12 @@ super + Escape
 XF86Audio{LowerVolume,RaiseVolume,Mute} + {_,shift}
 	pulseaudio-ctl {down,up,mute} {5,1}
 
+XF86Audio{Prev,Next}
+	playerctl --player=playerctld {previous,next}
+
+XF86AudioPlay
+	playerctl --player=playerctld play-pause
+
 # lock computer
 super + Pause
 	sleep 0.5; light-locker-command -a
