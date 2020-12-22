@@ -30,7 +30,7 @@ XF86AudioPlay
 
 # lock computer
 super + Pause
-	sleep 0.5; light-locker-command -a
+	sleep 0.5; xset s activate;
 
 # screenshot tool
 Print

@@ -29,8 +29,13 @@ fi
 
 # auto start
 picom --experimental-backends -b &
-light-locker &
+xss-lock -- lock-screen &
 redshift -x
 redshift-gtk &
 flameshot &
 gebaard -b &
+
+# since this is a single user computer we can simply
+# lock the session when x starts instead of dealing
+# with a full lightdm greeter
+i3locker -n

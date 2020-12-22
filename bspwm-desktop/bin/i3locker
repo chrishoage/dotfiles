@@ -1,0 +1,45 @@
+#!/bin/bash
+
+. ~/.cache/wal/colors.sh
+
+i3lock \
+  --screen 1 \
+  --ignore-empty-password \
+  --pass-media-keys \
+  --pass-volume-keys \
+  --image ~/.cache/i3lock-wall.png \
+  --clock \
+  --timepos x+70:h+60 \
+  --datepos tx:ty+25 \
+  --date-align 1 \
+  --time-align 1 \
+  --insidecolor=$background \
+  --color=$background \
+  --timecolor=$foreground \
+  --datecolor=$foreground \
+  --ringvercolor=$color3 \
+  --verifcolor=$color3 \
+  --ringwrongcolor=$color1 \
+  --wrongcolor=$color1 \
+  --keyhlcolor=$color4 \
+  --bshlcolor=$color5 \
+  --time-font="Operator SSm Book" \
+  --date-font="Operator SSm Book" \
+  --datesize=16 \
+  --datestr="%A, %B %e %Y" \
+  --layout-font="Operator SSm Book" \
+  --verif-font="Operator SSm Book" \
+  --greeter-font="Operator SSm Book" \
+  --wrong-font="Operator SSm Book" \
+  --indicator \
+  --bar-indicator \
+  --bar-width 250 \
+  --bar-direction 1 \
+  --bar-orientation=vertical \
+  --bar-max-height 50 \
+  --bar-base-width 50 \
+  --bar-periodic-step 50 \
+  --bar-step 50 \
+  --bar-position "x+50" \
+  --bar-color $background \
+  "$@"

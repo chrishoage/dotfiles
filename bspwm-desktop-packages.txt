@@ -19,8 +19,8 @@ thunar
 pulseaudio
 pulseaudio-ctl
 playerctl
-light-locker
-lightdm-mini-greeter-git
+i3lock-color
+xss-lock
 noto-fonts-emoji
 wmutils-git
 xtitle-git
