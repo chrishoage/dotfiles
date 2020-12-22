@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = Noto Color Emoji 12,Operator Mono Book 12
+    font = Noto Color Emoji 12,Operator SSm Book 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
