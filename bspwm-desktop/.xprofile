@@ -34,7 +34,8 @@ dunst-daemon &
 redshift -x
 redshift-gtk &
 flameshot &
-gebaard -b &
+touchegg --daemon &
+touchegg --client &
 
 # since this is a single user computer we can simply
 # lock the session when x starts instead of dealing

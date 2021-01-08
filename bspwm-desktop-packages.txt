@@ -19,6 +19,7 @@ thunar
 pulseaudio
 pulseaudio-ctl
 playerctl
+touchegg
 i3lock-color
 xss-lock
 noto-fonts-emoji
