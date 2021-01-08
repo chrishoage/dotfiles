@@ -10,5 +10,4 @@ echo "$GPG_KEY" | /usr/lib/gnupg/gpg-preset-passphrase -c A0E2A7B6D7DB2177073B41
 # SSH Keygrip
 echo "$GPG_KEY" | /usr/lib/gnupg/gpg-preset-passphrase -c 58D28E20E34A1E6220EB50CD087E4E7F2133CDC5
 # add ssh key to gpg-agent-ssh
-op get item "SSH Key" --fields password | SSH_ASKPASS=$HOME/.local/bin/ap-helper ssh-add ~/.ssh/id_rsa
-
+op get item "SSH Key" --fields password | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-add ~/.ssh/id_rsa

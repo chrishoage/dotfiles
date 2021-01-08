@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+if [[ -d "$HOME/.ssh" || -d "$HOME.gnugpg" ]]; then
+    echo "detected existing ssh or gpg folder"
+    exit 1
+fi
+
+eval $(op-login)
+
+mkdir -p $HOME/{.ssh,.gnupg}
+chmod 700 $HOME/{.ssh,.gnupg}
+
+cat >$HOME/.gnupg/gpg-agent.conf <<EOF
+enable-ssh-support
+allow-preset-passphrase
+allow-loopback-pinentry
+EOF
+
+cat >$HOME/.pam_environment <<EOF
+SSH_AGENT_PID	DEFAULT=
+SSH_AUTH_SOCK	DEFAULT="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+EOF
+
+export GPG_TTY=$(tty)
+
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+gpg-connect-agent reloadagent /bye
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
+cd $HOME/.ssh
+
+op get document "id_rsa - SSH Key" > id_rsa 
+chmod 600 id_rsa
+op get item "SSH Key" --fields password | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-keygen -y -f id_rsa > id_rsa.pub
+
+cd $HOME
+
+op get document "GPG Private Key" | gpg --import --batch
+
+op get item "GPG Passphrase" --fields password | gpg --pinentry-mode loopback --edit-key BAF8BFFC9F891E84E7C8E986DB3CA2CBFBCAFEC5 trust
+
+op get item "GPG Passphrase" --fields password | xclip -in -selection clipboard
+
+op-authenticate
