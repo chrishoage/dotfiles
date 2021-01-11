@@ -1,3 +1,0 @@
-#!/bin/bash
-
-echo "$(printf '%x\n' $(($1 * 255 / 100)))"

@@ -24,10 +24,6 @@ export WIRELESS_INTERFACE="$(ip -o link show | awk -F': ' '{print $2}' | grep '^
 # source wal colors.
 source ~/.cache/wal/colors.sh
 
-# export envar with alpha set.
-
-export bg_alpha="#$(int-to-hex $alpha)${background/'#'}"
-
 # Terminate already running bar instances
 killall -q polybar
 
