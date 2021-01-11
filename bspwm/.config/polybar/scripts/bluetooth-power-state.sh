@@ -2,7 +2,6 @@
 
 source ~/.cache/wal/colors.sh
 
-BLUETOOTH_POWERED=$(bluetoothctl show 3C:6A:A7:43:D2:6B | grep "Powered: yes" | wc -c)
 TOGGLE_STATE='off'
 
 if [ $(bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0 ]

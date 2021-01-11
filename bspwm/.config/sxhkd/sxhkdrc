@@ -28,6 +28,12 @@ XF86Audio{Prev,Next}
 XF86AudioPlay
 	playerctl --player=playerctld play-pause
 
+XF86AudioMicMute
+	pulseaudio-ctl mute-input
+
+XF86MonBrightness{Down,Up} + {_,shift}
+	light {-U,-A} {5,1}
+
 # lock computer
 super + Pause
 	sleep 0.5; xset s activate;

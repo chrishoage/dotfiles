@@ -7,6 +7,8 @@ background='{background}'
 foreground='{foreground}'
 cursor='{cursor}'
 alpha='{alpha}'
+alpha_dec='{alpha.alpha_dec}'
+alpha_hex='{alpha.alpha_hex}'
 
 # Colors
 color0='{color0}'

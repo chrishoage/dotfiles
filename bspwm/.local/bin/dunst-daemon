@@ -2,7 +2,7 @@
 
 . $HOME/.cache/wal/colors.sh
 
-bg_alpha="$background$(int-to-hex $alpha)"
+bg_alpha="$background$alpha_hex"
 
 dunst \
   -lb "$bg_alpha" \
