@@ -4,7 +4,7 @@ include-file=~/.config/polybar/common.ini
 inherit = bar/base
 
 modules-left = bspwm bsp-create bspwm-mon player
-modules-right = memory cpu temperature eth-up eth-down fs mic pulseaudio bluetooth date yay powermenu
+modules-right = memory cpu temperature network-up network-down fs mic pulseaudio bluetooth date yay powermenu
 
 tray-position = right
 tray-padding = 2
