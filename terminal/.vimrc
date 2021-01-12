@@ -66,6 +66,7 @@ set ignorecase
 set incsearch
 " Enable mouse in all modes
 set mouse=a
+set ttymouse=sgr
 " Tabs to spaces
 set expandtab
 " 2 spaces
