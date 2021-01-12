@@ -13,12 +13,12 @@ These dotfiles setup my terminal and desktop environment.
 ```sh
 git submodule update --init --recursive
 yay -Syu $(cat terminal-packages.txt | xargs)
-stow terminal
+stow --no-folding terminal
 ```
 
 The required packages for the desktop environment are listed in `bspwm-desktop-packages.txt`. It is presumed that the terminal dotfile packages have been installed and stowed.
 
 ```sh
-yay -Syu $(cat bspwm-desktop-packages.txt | xargs)
-stow bspwm-desktop
+yay -Syu $(cat bspwm-packages.txt | xargs)
+stow --no-folding bspwm bspwm-desktop
 ```
