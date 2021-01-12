@@ -1,0 +1,15 @@
+import:
+  - ~/.cache/wal/alacritty-colors.yml
+
+font:
+  size: 10
+
+window:
+    padding:
+      x: 8
+      y: 8
+
+url:
+  launcher:
+    program: focused-space-browser
+

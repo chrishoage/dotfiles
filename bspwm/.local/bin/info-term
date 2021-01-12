@@ -10,4 +10,4 @@ done
 
 EXEC_CMD=${@:$OPTIND:1}
 
-termite --name $info_term_name -e "$EXEC_CMD" &> /dev/null &
+alacritty --class=$info_term_name -e sh -c "$EXEC_CMD" &> /dev/null &

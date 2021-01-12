@@ -13,7 +13,7 @@ autorandr
 redshift
 python-pywal
 flameshot
-termite
+alacritty
 simplescreenrecorder
 thunar
 pulseaudio
