@@ -15,6 +15,8 @@ cat >$HOME/.gnupg/gpg-agent.conf <<EOF
 enable-ssh-support
 allow-preset-passphrase
 allow-loopback-pinentry
+default-cache-ttl 604800
+default-cache-ttl-ssh 604800
 EOF
 
 cat >$HOME/.pam_environment <<EOF
@@ -34,9 +36,12 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 cd $HOME/.ssh
 
-op get document "id_rsa - SSH Key" > id_rsa 
+op get document "id_rsa - SSH Key" > id_rsa
 chmod 600 id_rsa
-op get item "SSH Key" --fields password | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-keygen -y -f id_rsa > id_rsa.pub
+
+SSH_PASSPHRASE=$(op get item "SSH Key" --fields password)
+
+echo $SSH_PASSPHRASE | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-keygen -y -f id_rsa > id_rsa.pub
 
 cd $HOME
 
@@ -44,6 +49,12 @@ op get document "GPG Private Key" | gpg --import --batch
 
 op get item "GPG Passphrase" --fields password | gpg --pinentry-mode loopback --edit-key BAF8BFFC9F891E84E7C8E986DB3CA2CBFBCAFEC5 trust
 
-op get item "GPG Passphrase" --fields password | xclip -in -selection clipboard
+# gpg will create a gpg key based on the ssh key and will ask to proect it with
+# a passphrase. Put the SSH Passphrase in the clipboard so that it can be used
+# protect the gpg-stored ssh key
+echo $SSH_PASSPHRASE | xclip -in -selection clipboard
+
+# add ssh key to gpg
+echo $SSH_PASSPHRASE | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-add $HOME/.ssh/id_rsa
 
 op-authenticate

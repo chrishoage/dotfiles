@@ -3,11 +3,7 @@ set -e
 
 eval $(op-login)
 
-# cache the passphrase on both the main and ssh keygrip
-GPG_KEY=$(op get item "GPG Passphrase" --fields password)
 # Signing Subkey Keygrip
-echo "$GPG_KEY" | /usr/lib/gnupg/gpg-preset-passphrase -c A0E2A7B6D7DB2177073B4145536D6609C94A6002
+op get item "GPG Passphrase" --fields password | /usr/lib/gnupg/gpg-preset-passphrase -c A0E2A7B6D7DB2177073B4145536D6609C94A6002
 # SSH Keygrip
-echo "$GPG_KEY" | /usr/lib/gnupg/gpg-preset-passphrase -c 58D28E20E34A1E6220EB50CD087E4E7F2133CDC5
-# add ssh key to gpg-agent-ssh
-op get item "SSH Key" --fields password | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-add ~/.ssh/id_rsa
+op get item "SSH Key" --fields password | /usr/lib/gnupg/gpg-preset-passphrase -c 58D28E20E34A1E6220EB50CD087E4E7F2133CDC5
