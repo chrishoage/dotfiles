@@ -75,6 +75,8 @@ set shiftwidth=2
 " Read modeline
 set modeline
 
+autocmd FileType gitcommit setlocal spell
+
 let g:airline_powerline_fonts = 1
 
 set t_Co=256
