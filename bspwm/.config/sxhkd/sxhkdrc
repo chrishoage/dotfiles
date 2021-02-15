@@ -19,8 +19,11 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 # {Lower, Raise, Mute} volume
-XF86Audio{LowerVolume,RaiseVolume,Mute} + {_,shift}
-	pulseaudio-ctl {down,up,mute} {5,1}
+XF86Audio{LowerVolume,RaiseVolume} + {_,shift}
+	pactl set-sink-volume @DEFAULT_SINK@ {-,+}{5,1}%
+
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 XF86Audio{Prev,Next}
 	playerctl --player=playerctld {previous,next}
@@ -29,7 +32,7 @@ XF86AudioPlay
 	playerctl --player=playerctld play-pause
 
 XF86AudioMicMute
-	pulseaudio-ctl mute-input
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 XF86MonBrightness{Down,Up} + {_,shift}
 	light {-U,-A} {5,1}
