@@ -1,14 +1,12 @@
 #!/bin/bash
 set -e
 
-: "${PINENTRY_PROGRAM:=pinentry-qt}"
-
 MAX_RETRY=3
 retry=0
 
 login() {
   set +e
-  OP_SESS_EVAL=$($PINENTRY_PROGRAM <<< GETPIN | grep -oP 'D \K.*' | op signin my 2>/dev/null)
+  OP_SESS_EVAL=$(zenity --password | op signin my 2>/dev/null)
   set -e
   eval $OP_SESS_EVAL
 }
@@ -20,12 +18,12 @@ check-op-status() {
   set -e
 
   if [ "$retry" -ge "$MAX_RETRY" ]; then
-    echo 'echo "max retries reached"'
+    echo "max retries reached"
     exit 1
   fi
 
   if [ $LOGGED_IN -eq 127 ]; then
-    echo 'echo "1password CLI tool `op` not found"'
+    echo "1password CLI tool `op` not found"
     exit 2
   fi
 
