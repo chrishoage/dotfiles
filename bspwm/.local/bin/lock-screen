@@ -6,10 +6,10 @@ EXISTING_DPMS_OFF=$(xset q | awk '/Off: / {print $6}')
 
 xset dpms 5 5 5
 
-notify-send DUNST_COMMAND_PAUSE
+dunstctl set-paused true
 
 i3locker -n
 
 xset dpms $EXISTING_DPMS_OFF $EXISTING_DPMS_OFF $EXISTING_DPMS_OFF
 
-notify-send DUNST_COMMAND_RESUME
+dunstctl set-paused false
