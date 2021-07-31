@@ -35,7 +35,7 @@ i3lock \
   --wrong-font="Operator SSm Book" \
   --indicator \
   --bar-indicator \
-  --bar-width 250 \
+  --bar-total-width "h" \
   --bar-direction 1 \
   --bar-orientation=vertical \
   --bar-max-height 50 \
