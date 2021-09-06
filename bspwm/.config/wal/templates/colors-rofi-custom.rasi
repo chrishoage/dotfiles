@@ -34,6 +34,14 @@ window {{
     padding: 2.5ch;
 }}
 
+
+@media (max-width: 1920) {{
+    window {{
+      fullscreen: true;
+    }}
+}}
+
+
 mainbox {{
     border: 0;
     padding: 0;
@@ -78,6 +86,17 @@ mode-switcher {{
 element {{
     border: 0;
     padding: 5px 10px;
+}}
+
+element-text, element-icon {{
+    background-color: inherit;
+    text-color:       inherit;
+    highlight: inherit;
+    vertical-align: 0.5;
+}}
+
+element-icon {{
+    padding: 0px 10px;
 }}
 
 element.normal.normal {{
@@ -138,7 +157,7 @@ sidebar {{
 
 button {{
     text-color: @normal-foreground;
-    padding: 10px 0px;
+    padding: 10px;
 }}
 
 button.selected {{
