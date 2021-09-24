@@ -48,9 +48,6 @@ export LANG=en_US.UTF-8
 # Make vim the default editor
 export EDITOR="vim"
 
-# Make focused-space-browser util default browser
-export BROWSER=focused-space-browser
-
 # Make some commands not show up in history
 export HISTIGNORE="l:la:ls:cd:cd -:pwd:exit:date:* --help"
 

@@ -41,6 +41,10 @@ XF86MonBrightness{Down,Up} + {_,shift}
 super + Pause
 	sleep 0.5; xset s activate;
 
+# suspend computer
+super + shift + Pause
+	systemctl suspend
+
 # screenshot tool
 Print
 	flameshot gui

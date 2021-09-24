@@ -17,6 +17,9 @@ export DESKTOP_SESSION=gnome
 # use better trackpad scrolling for firefox
 export MOZ_USE_XINPUT2=1
 
+# Make firefox default browser
+export BROWSER=firefox
+
 # configure desktop
 
 # set wal theme colors
@@ -39,8 +42,3 @@ redshift-gtk &
 flameshot &
 touchegg --daemon &
 touchegg --client &
-
-# since this is a single user computer we can simply
-# lock the session when x starts instead of dealing
-# with a full lightdm greeter
-i3locker -n
