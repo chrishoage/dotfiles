@@ -2,9 +2,11 @@ configuration {
   show-icons: true;
   icon-theme: "Papirus Dark";
   drun-show-actions: true;
+  sorting-method: "fzf";
+  sort: true;
   modi: "drun,window,workspaces:rofi-modi-workspaces,emoji,hidden:rofi-modi-bspwm-unhide";
   sidebar-mode: true;
   theme:"~/.cache/wal/colors-rofi-custom.rasi";
 }
 
-/* vim:ft=css
+/* vim:ft=css */
