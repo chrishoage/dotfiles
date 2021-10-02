@@ -1,3 +1,4 @@
+hwdec=auto
 screen=0
 autofit-larger=75%
 geometry=50%:50%
