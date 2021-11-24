@@ -35,7 +35,7 @@ fi
 
 # auto start
 picom --experimental-backends -b &
-xss-lock -- lock-screen &
+xss-lock -l -- lock-screen &
 dunst-daemon &
 redshift -x
 redshift-gtk &
