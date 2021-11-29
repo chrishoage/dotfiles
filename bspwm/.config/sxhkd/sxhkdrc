@@ -81,11 +81,15 @@ super + shift + y
 super + g
 	bspc node -s biggest.local
 
-# create a workspace
+# rotate {clockwise, counterclockwise} the parent node of focused window
+super + {_,shift + }r
+	bspc node @parent -R {90,-90}
+
+# {create, create and focus} a workspace
 super + {equal,plus}
 	bspwm-create-ws {_,-f}
 
-# remove focused workspace
+# {remove empty, remove populated} focused workspace
 super + {underscore,minus}
 	bspwm-destroy-ws {-o,_}
 
@@ -106,16 +110,16 @@ super + ctrl + f ; {m,h,l,s,p}
 #
 
 # {focus, swap} the node in the given direction {west, south, north, east}
-super + {_,shift + }{h,j,k,l}
+super + {_,ctrl + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# warp the focused node in the given direction {west, south, north, east}
+# send the focused node in the given direction {west, south, north, east}
 super + alt + {h,j,k,l}
-	bspwm-warp {west,south,north,east}.local
+	bspc node focused -n {west,south,north,east}.local
 
 # focus the {next, previous} node in the current desktop
 super + {_,shift + }c
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local.window
 
 # focus or send the {next, previous} desktop in the current monitor
 super + {_,shift + }bracket{left,right}
@@ -136,7 +140,7 @@ super + {o,i}
 	bspc wm -h on
 
 # {focus, send} to the given desktop
-super + {_,shift +}{1-9,0}
+super + {_,ctrl +}{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
 # send focused node to the given monitor
@@ -148,15 +152,15 @@ super + alt + {1-9}
 #
 
 # preselect the direction {west, south, north, east}
-super + ctrl + {h,j,k,l}
+super + shift + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
+super + shift + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
+super + shift + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
