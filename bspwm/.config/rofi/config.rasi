@@ -6,7 +6,7 @@ configuration {
   sort: true;
   modi: "drun,window,workspaces:rofi-modi-workspaces,emoji,hidden:rofi-modi-bspwm-unhide";
   sidebar-mode: true;
-  theme:"~/.cache/wal/colors-rofi-custom.rasi";
 }
 
+@theme "~/.cache/wal/colors-rofi-custom.rasi"
 /* vim:ft=css */
