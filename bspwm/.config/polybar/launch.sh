@@ -18,7 +18,7 @@ export CPU_PACKAGE_HWMON="$(get_cpu_package_hwmon)"
 # In order to share configuraiton between laptop and desktop detect the
 # configured network and pass it to polybar as an envrionment varible
 
-export NETWORK_INTERFACE="$(ip -o link show | awk -F': ' '{print $2}' | grep '^e')"
+export NETWORK_INTERFACE="$(ip -o link show | grep 'state UP' | awk -F': ' '{print $2}')"
 export WIRELESS_INTERFACE="$(ip -o link show | awk -F': ' '{print $2}' | grep '^w')"
 
 # source wal colors.
