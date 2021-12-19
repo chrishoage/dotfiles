@@ -1,46 +1,28 @@
-export ZPLUG_HOME=$HOME/.zplug
-source $ZPLUG_HOME/init.zsh
 
-zplug "lib/clipboard", from:oh-my-zsh
-zplug "lib/git", from:oh-my-zsh
-zplug "lib/grep", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/theme-and-appearance", from:oh-my-zsh
-zplug "lib/compfix", from:oh-my-zsh, defer:0
-zplug "lib/completion", from:oh-my-zsh, defer:0
-zplug "plugins/rsync", from:oh-my-zsh
-zplug "laggardkernel/zsh-gpg-agent", if:"which gpg-agent"
-zplug "rupa/z", use:z.sh, defer:0
-zplug "changyuheng/fz", defer:1
+ZNAP_REPOS_DIR=~/.cache/znap/repos
+mkdir -p $ZNAP_REPOS_DIR
+zstyle ':znap:*' repos-dir $ZNAP_REPOS_DIR
+source ~/.znap/znap.zsh
 
-zplug "~/.zsh", from:local
-zplug "~/.zsh", from:local, as:theme
-zplug "~/", use:".extra", defer:3, from:local, if:"[[ -f ~/.extra ]]"
+znap prompt sindresorhus/pure
 
-zplug "zsh-users/zsh-completions", defer:0
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:3
+source ~/.zsh/aliases.zsh
+source ~/.zsh/functions.zsh
+[[ -f ~/.extra ]] && source ~/.extra
 
-DISABLE_AUTO_UPDATE="true"
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="false"
-APPEND_HISTORY="true"
+znap source ohmyzsh/ohmyzsh lib/{clipboard,history,key-bindings}
+znap source rupa/z z
+znap source changyuheng/fz
+
+znap source zsh-users/zsh-completions
+znap source zsh-users/zsh-history-substring-search
+znap source zsh-users/zsh-syntax-highlighting
+
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
 unsetopt cdable_vars
 unsetopt auto_name_dirs
-
-zplug load
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8

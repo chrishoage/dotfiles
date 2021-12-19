@@ -1,3 +1,4 @@
-[submodule "terminal/.zplug"]
-	path = terminal/.zplug
-	url = https://github.com/zplug/zplug.git
+[submodule "znap"]
+	path = terminal/.znap
+	url = https://github.com/marlonrichert/zsh-snap.git
+	shallow = true
