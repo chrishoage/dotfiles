@@ -3,5 +3,5 @@
 COLOR=$1
 
 bspc subscribe node_flag | while read -a msg; do
-  [ "${msg[4]}" = "urgent" -a "${msg[5]}" = "on" ] && chwb -c "${COLOR/\#/0x}" "${msg[3]}"
+	[ "${msg[4]}" = "urgent" -a "${msg[5]}" = "on" ] && chwb -c "${COLOR/\#/0x}" "${msg[3]}"
 done

@@ -8,7 +8,7 @@
 source "${HOME}/.cache/wal/colors.sh"
 
 # Set the border colors
-bspc config focused_border_color  "$color4"
+bspc config focused_border_color "$color4"
 
 # ===================
 # ====== dunst ======

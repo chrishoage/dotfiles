@@ -3,11 +3,11 @@
 info_term_name='info-term'
 
 while getopts "l" opt; do
-  case "$opt" in
-    l) info_term_name='info-term-large';;
-  esac
+	case "$opt" in
+		l) info_term_name='info-term-large' ;;
+	esac
 done
 
 EXEC_CMD=${@:$OPTIND:1}
 
-alacritty --class=$info_term_name -e sh -c "$EXEC_CMD" &> /dev/null &
+alacritty --class=$info_term_name -e sh -c "$EXEC_CMD" &>/dev/null &

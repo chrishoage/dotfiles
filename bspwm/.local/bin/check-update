@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
-checkupdates;
+checkupdates
 paru -Qau
 
 read -s -n 1 k <&1
 if [[ $k = q ]]; then
-  exit
+	exit
 fi

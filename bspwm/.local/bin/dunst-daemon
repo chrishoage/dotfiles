@@ -5,12 +5,12 @@
 bg_alpha="$background$alpha_hex"
 
 dunst \
-  -lb "$bg_alpha" \
-  -nb "$bg_alpha" \
-  -cb "$bg_alpha" \
-  -lf "$foreground" \
-  -nf "$foreground" \
-  -cf "$foreground" \
-  -cfr "$color1" \
-  -frame_color $color4 \
-  "$@"
+	-lb "$bg_alpha" \
+	-nb "$bg_alpha" \
+	-cb "$bg_alpha" \
+	-lf "$foreground" \
+	-nf "$foreground" \
+	-cf "$foreground" \
+	-cfr "$color1" \
+	-frame_color $color4 \
+	"$@"

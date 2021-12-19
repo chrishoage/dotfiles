@@ -2,8 +2,8 @@
 set -e
 
 if [[ -d "$HOME/.ssh" || -d "$HOME.gnugpg" ]]; then
-    echo "detected existing ssh or gpg folder"
-    exit 1
+	echo "detected existing ssh or gpg folder"
+	exit 1
 fi
 
 eval $(op-login)
@@ -28,7 +28,7 @@ export GPG_TTY=$(tty)
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
 gpg-connect-agent reloadagent /bye
@@ -36,12 +36,12 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 cd $HOME/.ssh
 
-op get document "id_rsa - SSH Key" > id_rsa
+op get document "id_rsa - SSH Key" >id_rsa
 chmod 600 id_rsa
 
 SSH_PASSPHRASE=$(op get item "SSH Key" --fields password)
 
-echo $SSH_PASSPHRASE | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-keygen -y -f id_rsa > id_rsa.pub
+echo $SSH_PASSPHRASE | SSH_ASKPASS=$HOME/.local/bin/cat-ask-pass ssh-keygen -y -f id_rsa >id_rsa.pub
 
 cd $HOME
 

@@ -5,38 +5,38 @@ DESKTOP_SEL='focused:focused.!occupied'
 NODE_CLOSE_FLAG='-c'
 
 usage() {
-  echo "Usage: $(basename $0) [-o] [-k] [-h]"
-  echo
-  echo "  -o      ignore when workspace is occupied"
-  echo "  -k      kill node instead of close"
-  echo "  -h      this help text"
-  exit 1
+	echo "Usage: $(basename $0) [-o] [-k] [-h]"
+	echo
+	echo "  -o      ignore when workspace is occupied"
+	echo "  -k      kill node instead of close"
+	echo "  -h      this help text"
+	exit 1
 }
 
 while getopts 'okh' OPTION; do
-  case "$OPTION" in
-    o) 
-      DESKTOP_SEL='focused:focused'
-      ;;
+	case "$OPTION" in
+		o)
+			DESKTOP_SEL='focused:focused'
+			;;
 
-    k)
-      NODE_CLOSE_FLAG='-k'
-      ;;
+		k)
+			NODE_CLOSE_FLAG='-k'
+			;;
 
-    h)
-      usage
-      ;;
-    ?)
-      usage
-      ;;
-  esac
+		h)
+			usage
+			;;
+		?)
+			usage
+			;;
+	esac
 done
-shift "$(($OPTIND -1))"
+shift "$(($OPTIND - 1))"
 
 NODE_ID=$(bspc query -n "@$DESKTOP_SEL:/" -N)
 
 if [ -n "$NODE_ID" ]; then
-  bspc node $NODE_ID ${NODE_CLOSE_FLAG}
+	bspc node $NODE_ID ${NODE_CLOSE_FLAG}
 fi
 
 bspc desktop $DESKTOP_SEL -r

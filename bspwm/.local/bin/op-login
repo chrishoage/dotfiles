@@ -5,39 +5,39 @@ MAX_RETRY=3
 retry=0
 
 login() {
-  set +e
-  OP_SESS_EVAL=$(zenity --password | op signin my 2>/dev/null)
-  set -e
-  eval $OP_SESS_EVAL
+	set +e
+	OP_SESS_EVAL=$(zenity --password | op signin my 2>/dev/null)
+	set -e
+	eval $OP_SESS_EVAL
 }
 
 check-op-status() {
-  set +e
-  op --cache --session $OP_SESSION_my list items >/dev/null 2>&1
-  LOGGED_IN=$?
-  set -e
+	set +e
+	op --cache --session $OP_SESSION_my list items >/dev/null 2>&1
+	LOGGED_IN=$?
+	set -e
 
-  if [ "$retry" -ge "$MAX_RETRY" ]; then
-    echo "max retries reached"
-    exit 1
-  fi
+	if [ "$retry" -ge "$MAX_RETRY" ]; then
+		echo "max retries reached"
+		exit 1
+	fi
 
-  if [ $LOGGED_IN -eq 127 ]; then
-    echo "1password CLI tool `op` not found"
-    exit 2
-  fi
+	if [ $LOGGED_IN -eq 127 ]; then
+		echo "1password CLI tool $(op) not found"
+		exit 2
+	fi
 
-  if [ ! $LOGGED_IN -eq 0 ]; then
-    retry=$((retry + 1))
-    login
-    check-op-status
-  else
-    op --session $OP_SESSION_my signin my
-  fi
+	if [ ! $LOGGED_IN -eq 0 ]; then
+		retry=$((retry + 1))
+		login
+		check-op-status
+	else
+		op --session $OP_SESSION_my signin my
+	fi
 }
 
 if [[ ! -v OP_SESSION_my ]]; then
-  login
+	login
 fi
 
 check-op-status

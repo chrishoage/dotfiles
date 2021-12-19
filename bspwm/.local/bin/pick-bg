@@ -5,47 +5,47 @@ DEFAULT_DIR="$HOME/.wallpapers"
 ARG=${1:-$DEFAULT_DIR}
 
 if [ -f "$ARG" ]; then
-  WALLPAPER=$(realpath $1)
+	WALLPAPER=$(realpath $1)
 elif [ -d "$ARG" ]; then
-  WALLPAPER_DIR=$(realpath "${1:-$DEFAULT_DIR}")
-  WALLPAPER=$(realpath $WALLPAPER_DIR/${2:-$(find -L "$WALLPAPER_DIR" -maxdepth 1 -type f | sed 's!.*/!!' | sort | fzf --no-multi --preview "feh --no-fehbg --bg-fill $WALLPAPER_DIR/{}" --preview-window=0)})
+	WALLPAPER_DIR=$(realpath "${1:-$DEFAULT_DIR}")
+	WALLPAPER=$(realpath $WALLPAPER_DIR/${2:-$(find -L "$WALLPAPER_DIR" -maxdepth 1 -type f | sed 's!.*/!!' | sort | fzf --no-multi --preview "feh --no-fehbg --bg-fill $WALLPAPER_DIR/{}" --preview-window=0)})
 else
-  echo "argument $ARG not a file or direcotry"
-  exit 1
+	echo "argument $ARG not a file or direcotry"
+	exit 1
 fi
 
 if ! identify "$WALLPAPER" >/dev/null 2>&1; then
-  echo "$WALLPAPER is not detected as an image"
-  exit 1
+	echo "$WALLPAPER is not detected as an image"
+	exit 1
 fi
 
 if [ -n "$WALLPAPER" ]; then
 
-  feh --bg-fill "$WALLPAPER"
+	feh --bg-fill "$WALLPAPER"
 
-  X_DISPLAY_RES=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
-  X_SCREEN_GEO=$(xrandr | grep " connected" | sed -rn "s/.* ([0-9]+x[0-9]+\+[0-9]+\+[0-9]+).*/\1/p")
+	X_DISPLAY_RES=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+	X_SCREEN_GEO=$(xrandr | grep " connected" | sed -rn "s/.* ([0-9]+x[0-9]+\+[0-9]+\+[0-9]+).*/\1/p")
 
-  CONVERT_PARAMS=()
-  CONVERT_PARAMS+=("-size $X_DISPLAY_RES 'xc:black' -write mpr:canvas +delete")
-  CONVERT_PARAMS+=("$WALLPAPER -write mpr:input +delete")
+	CONVERT_PARAMS=()
+	CONVERT_PARAMS+=("-size $X_DISPLAY_RES 'xc:black' -write mpr:canvas +delete")
+	CONVERT_PARAMS+=("$WALLPAPER -write mpr:input +delete")
 
-  while IFS= read -r SCREEN_GEO; do
-    SCREEN_RES=$(echo "$SCREEN_GEO" | cut -d + -f1)
-    CONVERT_PARAMS+=("mpr:input -resize $SCREEN_RES^ -gravity Center -crop $SCREEN_RES+0+0 +repage +gravity -write mpr:$SCREEN_GEO +delete")
-  done <<< "$X_SCREEN_GEO"
+	while IFS= read -r SCREEN_GEO; do
+		SCREEN_RES=$(echo "$SCREEN_GEO" | cut -d + -f1)
+		CONVERT_PARAMS+=("mpr:input -resize $SCREEN_RES^ -gravity Center -crop $SCREEN_RES+0+0 +repage +gravity -write mpr:$SCREEN_GEO +delete")
+	done <<<"$X_SCREEN_GEO"
 
-  CONVERT_PARAMS+=("mpr:canvas")
+	CONVERT_PARAMS+=("mpr:canvas")
 
-  while IFS= read -r SCREEN_GEO; do
-    CONVERT_PARAMS+=("-type TrueColor mpr:$SCREEN_GEO  -geometry $SCREEN_GEO -composite")
-  done <<< "$X_SCREEN_GEO"
+	while IFS= read -r SCREEN_GEO; do
+		CONVERT_PARAMS+=("-type TrueColor mpr:$SCREEN_GEO  -geometry $SCREEN_GEO -composite")
+	done <<<"$X_SCREEN_GEO"
 
-  CONVERT_PARAMS+=("-depth 8")
-  CONVERT_PARAMS+=("$HOME/.cache/i3lock-wall.png")
+	CONVERT_PARAMS+=("-depth 8")
+	CONVERT_PARAMS+=("$HOME/.cache/i3lock-wall.png")
 
-  eval "convert ${CONVERT_PARAMS[@]}"
+	eval "convert ${CONVERT_PARAMS[@]}"
 
 elif [ -f "$HOME/.fehbg" ]; then
-  $HOME/.fehbg
+	$HOME/.fehbg
 fi

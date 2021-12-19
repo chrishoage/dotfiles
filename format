@@ -1,0 +1,3 @@
+#!/bin/bash
+
+shfmt -f . | grep -Ev '.zplug|wal\/templates' | xargs shfmt -ci -kp -w

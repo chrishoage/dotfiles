@@ -5,4 +5,4 @@ eval $(op-login)
 
 FOLDER=$1
 
-op --cache get item "bookmarks"| jq ".details.sections[] | select(.title == \"$FOLDER\") | .fields[].v" | xargs
+op --cache get item "bookmarks" | jq ".details.sections[] | select(.title == \"$FOLDER\") | .fields[].v" | xargs

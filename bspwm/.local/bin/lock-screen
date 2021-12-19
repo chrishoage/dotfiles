@@ -12,28 +12,26 @@ dunstctl set-paused true
 # wait for it to exit. The waiting is not that straightforward when the locker
 # forks, so we use this polling only if we have a sleep lock to deal with.
 if [[ -e /dev/fd/${XSS_SLEEP_LOCK_FD:--1} ]]; then
-    kill_i3locker() {
-        pkill -xu $EUID "$@" i3locker
-    }
+	kill_i3locker() {
+		pkill -xu $EUID "$@" i3locker
+	}
 
-    trap kill_i3locker TERM INT
+	trap kill_i3locker TERM INT
 
-    # we have to make sure the locker does not inherit a copy of the lock fd
-    i3locker {XSS_SLEEP_LOCK_FD}<&-
+	# we have to make sure the locker does not inherit a copy of the lock fd
+	i3locker {XSS_SLEEP_LOCK_FD}<&-
 
-    # now close our fd (only remaining copy) to indicate we're ready to sleep
-    exec {XSS_SLEEP_LOCK_FD}<&-
+	# now close our fd (only remaining copy) to indicate we're ready to sleep
+	exec {XSS_SLEEP_LOCK_FD}<&-
 
-    while kill_i3locker -0; do
-        sleep 0.5
-    done
+	while kill_i3locker -0; do
+		sleep 0.5
+	done
 else
-    trap 'kill %%' TERM INT
-    i3locker -n &
-    wait
+	trap 'kill %%' TERM INT
+	i3locker -n &
+	wait
 fi
-
-
 
 xset dpms $EXISTING_DPMS_OFF $EXISTING_DPMS_OFF $EXISTING_DPMS_OFF
 
