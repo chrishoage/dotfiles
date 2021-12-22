@@ -17,15 +17,6 @@ function fs() {
   fi
 }
 
-# Create a data URL from a file
-function dataurl() {
-  local mimeType=$(file -b --mime-type "$1")
-  if [[ $mimeType == text/* ]]; then
-    mimeType="${mimeType};charset=utf-8"
-  fi
-  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
-}
-
 # allow l and la alias to work when exa is not installed
 function l() {
   if (( $+commands[exa] )); then
@@ -43,3 +34,32 @@ function la() {
     ls -lah "$@"
   fi
 }
+
+function clipcopy() {
+  if [ -n "${DISPLAY:-}" ] && (( ${+commands[xclip]} )); then
+    xclip -in -selection clipboard < "${1:-/dev/stdin}"
+  elif [ -n "${DISPLAY:-}" ] && (( ${+commands[xsel]} )); then
+    xsel --clipboard --input < "${1:-/dev/stdin}"
+  elif [ -n "${WAYLAND_DISPLAY:-}" ] && (( ${+commands[wl-copy]} )) && (( ${+commands[wl-paste]} )); then
+    wl-copy < "${1:-/dev/stdin}"
+  elif [[ $OSTYPE == linux-android* ]] && (( $+commands[termux-clipboard-set] )); then
+    termux-clipboard-set < "${1:-/dev/stdin}"
+  elif [ -n "${TMUX:-}" ] && (( ${+commands[tmux]} )); then
+    tmux load-buffer "${1:--}"
+  fi
+}
+
+function clippaste() {
+  if [ -n "${DISPLAY:-}" ] && (( ${+commands[xclip]} )); then
+    xclip -out -selection clipboard
+  elif [ -n "${DISPLAY:-}" ] && (( ${+commands[xsel]} )); then
+    xsel --clipboard --output
+  elif [ -n "${WAYLAND_DISPLAY:-}" ] && (( ${+commands[wl-copy]} )) && (( ${+commands[wl-paste]} )); then
+    wl-paste
+  elif [[ $OSTYPE == linux-android* ]] && (( $+commands[termux-clipboard-set] )); then
+    termux-clipboard-get
+  elif [ -n "${TMUX:-}" ] && (( ${+commands[tmux]} )); then
+    tmux save-buffer -
+  fi
+}
+
