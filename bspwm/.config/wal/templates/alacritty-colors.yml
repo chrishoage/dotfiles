@@ -1,5 +1,7 @@
-background_opacity: {background.alpha_dec}
+window:
+  opacity: {background.alpha_dec}
 colors:
+  transparent_background_colors: true
   background: '{background}'
   foreground: '{foreground}'
 
