@@ -47,5 +47,4 @@ dunst-daemon &
 redshift -x
 redshift-gtk &
 flameshot &
-touchegg --daemon &
-touchegg --client &
+touchegg --quiet &
