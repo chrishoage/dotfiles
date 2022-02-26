@@ -43,7 +43,7 @@ fi
 # auto start
 picom --experimental-backends -b &
 xss-lock -l -- lock-screen &
-dunst-daemon &
+dunst &
 redshift -x
 redshift-gtk &
 flameshot &
