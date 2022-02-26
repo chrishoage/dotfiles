@@ -16,7 +16,7 @@ bspc config focused_border_color "$color4"
 
 # Restart dunst with the new color scheme
 mkdir -p $HOME/.config/dunst/dunstrc.d
-ln -sf $HOME/.cache/wal/dunst-colors.conf $HOME/.config/dunst/dunstrc.d/10-colors.conf
+ln -sf $HOME/.cache/wal/colors-dunst.conf $HOME/.config/dunst/dunstrc.d/10-colors.conf
 pkill dunst
 dunst &
 
