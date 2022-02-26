@@ -8,5 +8,7 @@ configuration {
   sidebar-mode: true;
 }
 
-@theme "~/.cache/wal/colors-rofi-custom.rasi"
+@theme "theme.rasi"
+
+/* code: language=rasi */
 /* vim:ft=css */
