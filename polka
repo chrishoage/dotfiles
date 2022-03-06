@@ -1,0 +1,3 @@
+#!/bin/sh
+
+deno run -A ./polkadots/mod.ts $@

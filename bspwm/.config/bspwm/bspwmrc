@@ -1,6 +1,6 @@
 #! /bin/sh
 
-. $HOME/.cache/wal/colors.sh
+. $HOME/.config/colors.sh
 
 SXHKD_FIFO=/tmp/sxhkd-key-fifo
 mkfifo $SXHKD_FIFO

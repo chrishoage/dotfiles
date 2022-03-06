@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. ~/.cache/wal/colors.sh
-
 EXISTING_DPMS_OFF=$(xset q | awk '/Off: / {print $6}')
 
 xset dpms 5 5 5

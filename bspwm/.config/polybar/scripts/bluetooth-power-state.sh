@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ~/.cache/wal/colors.sh
+source ~/.config/colors.sh
 
 TOGGLE_STATE='off'
 

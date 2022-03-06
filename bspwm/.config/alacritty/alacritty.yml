@@ -1,5 +1,5 @@
 import:
-  - ~/.cache/wal/colors-alacritty.yml
+  - ~/.config/alacritty/colors.yml
 
 font:
   size: 11

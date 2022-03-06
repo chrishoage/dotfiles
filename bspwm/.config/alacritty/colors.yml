@@ -1,0 +1,29 @@
+window:
+  opacity: 0.8
+colors:
+  transparent_background_colors: true
+  background: '#242B2E'
+  foreground: '#D4D4D4'
+
+  cursor:
+    cursor: '#C0C5CE'
+
+  normal:
+    black:   '#1B2B34'
+    red:     '#E15A60'
+    green:   '#99C794'
+    yellow:  '#FAC863'
+    blue:    '#6699CC'
+    magenta: '#C594C5'
+    cyan:    '#5FB3B3'
+    white:   '#C0C5CE'
+
+  bright:
+    black:   '#65737E'
+    red:     '#E15A60'
+    green:   '#99C794'
+    yellow:  '#FAC863'
+    blue:    '#6699CC'
+    magenta: '#C594C5'
+    cyan:    '#5FB3B3'
+    white:   '#D8DEE9'

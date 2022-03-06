@@ -29,9 +29,8 @@ export BROWSER=firefox
 
 # configure desktop
 
-# set wal theme colors
-wal --theme gatito -a 80
-. $HOME/.cache/wal/colors.sh
+# set theme colors
+. $HOME/.config/colors.sh
 
 #set last used wallpaper, or default
 if [ -f "$HOME/.fehbg" ]; then
