@@ -4,6 +4,6 @@ set -e
 eval $(op-login)
 
 # Signing Subkey Keygrip
-op get item "GPG Passphrase" --fields password | /usr/lib/gnupg/gpg-preset-passphrase -c A0E2A7B6D7DB2177073B4145536D6609C94A6002
+op item get "GPG Passphrase" --fields password --format=json | jq -r .value | /usr/lib/gnupg/gpg-preset-passphrase -c A0E2A7B6D7DB2177073B4145536D6609C94A6002
 # SSH Keygrip
-op get item "SSH Key" --fields password | /usr/lib/gnupg/gpg-preset-passphrase -c 58D28E20E34A1E6220EB50CD087E4E7F2133CDC5
+op item get "SSH Key" --fields password --format=json | jq -r .value | /usr/lib/gnupg/gpg-preset-passphrase -c 58D28E20E34A1E6220EB50CD087E4E7F2133CDC5

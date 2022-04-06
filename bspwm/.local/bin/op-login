@@ -4,16 +4,19 @@ set -e
 MAX_RETRY=3
 retry=0
 
+MY_OP_UUID=$(op account list --format=json | jq -r '.[] | select(.shorthand = "my") | .user_uuid')
+MY_OP_SESSION="OP_SESSION_$MY_OP_UUID"
+
 login() {
 	set +e
-	OP_SESS_EVAL=$(zenity --password | op signin my 2>/dev/null)
+	OP_SESS_EVAL=$(zenity --password | op signin -f --account my 2>/dev/null)
 	set -e
 	eval $OP_SESS_EVAL
 }
 
 check-op-status() {
 	set +e
-	op --cache --session $OP_SESSION_my list items >/dev/null 2>&1
+	op --cache --session ${!MY_OP_SESSION} item list >/dev/null 2>&1
 	LOGGED_IN=$?
 	set -e
 
@@ -32,11 +35,11 @@ check-op-status() {
 		login
 		check-op-status
 	else
-		op --session $OP_SESSION_my signin my
+		op --session ${!MY_OP_SESSION} signin -f --account my
 	fi
 }
 
-if [[ ! -v OP_SESSION_my ]]; then
+if [[ ! -v "${MY_OP_SESSION}" ]]; then
 	login
 fi
 
