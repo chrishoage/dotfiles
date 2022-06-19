@@ -42,6 +42,7 @@ fi
 # auto start
 picom --experimental-backends -b &
 xss-lock -l -- lock-screen &
+xautolock -time 60 -locker 'systemctl suspend' -detectsleep -corners '0-00' &
 dunst &
 redshift -x
 redshift-gtk &
