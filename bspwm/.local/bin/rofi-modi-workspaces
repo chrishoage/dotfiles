@@ -13,9 +13,9 @@ fi
 
 if [[ -n $@ ]]; then
 	frece increment $DB_FILE ${1}
-	eval "$WORKSPACE_DIR/${1}" &>/dev/null &
-	disown
-	exit
+  coproc ("$WORKSPACE_DIR/${1}" 2>&1>/dev/null &)
+  exec 1>&-
+	exit;
 else
 	frece print $DB_FILE
 fi
