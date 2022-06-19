@@ -5,7 +5,6 @@ export SAVEHIST=10000
 # Make some commands not show up in history
 export HISTIGNORE='l:la:ls:cd:cd -:pwd:exit:date:* --help'
 
-
 # If a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word.
 setopt always_to_end
 # If a new command line being added to the history list duplicates an older one, the older command is removed from the list
@@ -18,3 +17,7 @@ setopt hist_expire_dups_first
 setopt extended_history
 # show command with history expansion to user before running it
 setopt hist_verify
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
