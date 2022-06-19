@@ -2,9 +2,19 @@
 
 . $HOME/.config/colors.sh
 
+SXHKD_CONFIGS=(
+  $HOME/.config/sxhkd/sxhkdrc
+)
+
+for f in $HOME/.config/sxhkd/?*; do
+  if [[ ! "$f" =~ "sxhkdrc" ]]; then
+    SXHKD_CONFIGS+=($f)
+  fi
+done
+
 SXHKD_FIFO=/tmp/sxhkd-key-fifo
 mkfifo $SXHKD_FIFO
-sxhkd -s $SXHKD_FIFO &
+sxhkd -s $SXHKD_FIFO "${SXHKD_CONFIGS[@]}" &
 sxhkd-chord-color -f $SXHKD_FIFO -c "$color5" &
 
 bspwm-urgent-border "$color9" &
