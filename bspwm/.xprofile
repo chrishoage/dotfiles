@@ -15,6 +15,11 @@ xrdb -merge $HOME/.Xresources
 # swap capslock and ctrl
 setxkbmap -option 'caps:ctrl_modifier'
 
+# apply any local Xmodmap overrides
+if [ -f "$HOME/.Xmodmap" ]; then
+  xmodmap $HOME/.Xmodmap
+fi
+
 # use a normal cursor
 xsetroot -cursor_name left_ptr &
 
