@@ -35,6 +35,16 @@ function la() {
   fi
 }
 
+
+# shortcut to open current directory or passed in argument
+function open() {
+  if [ $# -eq 0 ]; then
+    xdg-open "$(pwd)"
+  else
+    xdg-open "$@"
+  fi
+}
+
 function clipcopy() {
   if [ -n "${DISPLAY:-}" ] && (( ${+commands[xclip]} )); then
     xclip -in -selection clipboard < "${1:-/dev/stdin}"
