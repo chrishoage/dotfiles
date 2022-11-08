@@ -19,9 +19,11 @@ default-cache-ttl 604800
 default-cache-ttl-ssh 604800
 EOF
 
-cat >$HOME/.pam_environment <<EOF
-SSH_AGENT_PID	DEFAULT=
-SSH_AUTH_SOCK	DEFAULT="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+mkdir -p $HOME/.config/profile.d
+
+cat >$HOME/.config/profile.d/gpg-ssh-sock.sh <<EOF
+export SSH_AGENT_PID=
+export SSH_AUTH_SOCK="\${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 EOF
 
 export GPG_TTY=$(tty)
