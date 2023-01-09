@@ -17,7 +17,6 @@ Plug 'chrisbra/Colorizer'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'bling/vim-airline'
-Plug 'mhartington/oceanic-next'
 Plug 'dylanaraps/wal.vim'
 call plug#end()
 
@@ -80,17 +79,9 @@ autocmd FileType gitcommit setlocal spell
 let g:airline_powerline_fonts = 1
 
 set t_Co=256
-if filereadable(expand('~/.cache/wal/colors'))
-  colorscheme wal
-else
-  colorscheme OceanicNext
-endif
+colorscheme wal
 
 set background=dark
 
 
-if filereadable(expand('~/.cache/wal/colors'))
-  let g:airline_theme='wal'
-else
-  let g:airline_theme='oceanicnext'
-endif
+let g:airline_theme='wal'

@@ -11,7 +11,6 @@ papirus-icon-theme
 picom-git
 autorandr
 redshift
-python-pywal
 flameshot
 alacritty
 simplescreenrecorder
