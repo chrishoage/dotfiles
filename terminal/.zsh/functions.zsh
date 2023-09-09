@@ -17,18 +17,22 @@ function fs() {
   fi
 }
 
-# allow l and la alias to work when exa is not installed
+# allow l and la alias to work when eza is not installed
 function l() {
   if (( $+commands[exa] )); then
+    exa -l "$@"
+  elif (( $+commands[eza] )); then
     exa -l "$@"
   else
     ls -lh "$@"
   fi
 }
 
-# alias la to exa or ls
+# alias la to eza or ls
 function la() {
   if (( $+commands[exa] )); then
+    exa -la "$@"
+  elif (( $+commands[eza] )); then
     exa -la "$@"
   else
     ls -lah "$@"
