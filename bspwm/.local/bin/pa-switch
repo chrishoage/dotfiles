@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NEXT_SINK=""
+CURRENT_SINK=$(pactl info | sed -n 's/Default Sink: //p')
+
+if [ "$1" = "$CURRENT_SINK" ]; then
+    NEXT_SINK="$2"
+else
+    NEXT_SINK="$1"
+fi
+
+pactl set-default-sink "$NEXT_SINK"
+pactl list short sink-inputs | while read STREAM; do
+    STREAM_ID=$(echo $STREAM | cut '-d ' -f1)
+    echo "moving stream $STREAM_ID"
+    pactl move-sink-input "$STREAM_ID" "$NEXT_SINK"
+done
