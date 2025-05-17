@@ -13,9 +13,12 @@ fi
 
 if [[ -n $@ ]]; then
 	frece increment $DB_FILE ${1}
-  coproc ("$WORKSPACE_DIR/${1}" 2>&1>/dev/null &)
-  exec 1>&-
-	exit;
+	bspc rule -a '*' -o state=floating
+	coproc (
+		alacritty -o 'shell.program="/usr/bin/zsh"' -e /usr/bin/zsh -c "$WORKSPACE_DIR/launch $WORKSPACE_DIR/${1}" 2>&1 >/dev/null
+	)
+	exec 1>&-
+	exit
 else
 	frece print $DB_FILE
 fi

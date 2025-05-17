@@ -1,46 +1,6 @@
 #!/bin/bash
-set -e
 
-MAX_RETRY=3
-retry=0
-
-MY_OP_UUID=$(op account list --format=json | jq -r '.[] | select(.shorthand = "my") | .user_uuid')
-MY_OP_SESSION="OP_SESSION_$MY_OP_UUID"
-
-login() {
-	set +e
-	OP_SESS_EVAL=$(zenity --password | op signin -f --account my 2>/dev/null)
-	set -e
-	eval $OP_SESS_EVAL
-}
-
-check-op-status() {
-	set +e
-	op --cache --session ${!MY_OP_SESSION} item list >/dev/null 2>&1
-	LOGGED_IN=$?
-	set -e
-
-	if [ "$retry" -ge "$MAX_RETRY" ]; then
-		echo "max retries reached"
-		exit 1
-	fi
-
-	if [ $LOGGED_IN -eq 127 ]; then
-		echo "1password CLI tool $(op) not found"
-		exit 2
-	fi
-
-	if [ ! $LOGGED_IN -eq 0 ]; then
-		retry=$((retry + 1))
-		login
-		check-op-status
-	else
-		op --session ${!MY_OP_SESSION} signin -f --account my
-	fi
-}
-
-if [[ ! -v "${MY_OP_SESSION}" ]]; then
-	login
+if ! op whoami >/dev/null 2>&1; then
+  MY_OP_UUID=$(op account list --format=json | jq -r '.[] | select(.email == "iam@chrishoage.com") | .user_uuid')
+  op signin --account $MY_OP_UUID >/dev/null 2>&1
 fi
-
-check-op-status
