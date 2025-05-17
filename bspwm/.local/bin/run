@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec systemd-run --user --scope --property=ManagedOOMPreference=avoid --quiet "$@"

@@ -45,11 +45,14 @@ else
 fi
 
 # auto start
-picom --experimental-backends -b &
+picom -b &
 xss-lock -l -- lock-screen &
-xautolock -time 60 -locker 'systemctl suspend' -detectsleep -corners '0-00' &
+xautolock -time 20 -locker 'systemctl suspend' -detectsleep -corners '0-00' &
 dunst &
-redshift -x
-redshift-gtk &
-flameshot &
-touchegg --quiet &
+redshift -x &
+systemctl --user reset-failed
+run --collect --unit=redshift-gtk redshift-gtk &
+run --collect --unit=flameshot flameshot &
+run --collect --unit=tochegg-client touchegg --quiet &
+run --collect --unit=1password 1password --silent &
+run --collect --unit=udiskie udiskie --automount --notify --tray &

@@ -1,5 +1,9 @@
 import = ["~/.config/alacritty/colors.toml"]
 
+[shell]
+program = "/usr/bin/systemd-run"
+args = ["--user", "--scope", "--quiet", "-S"]
+
 [font]
 size = 13
 
