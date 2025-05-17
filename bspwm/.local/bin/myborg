@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-set -o pipefail
-
-eval $(op-login)
-
-BORG_PASSPHRASE="$(op get item 'Borg Backup' | jq .details.password -r)" exec sudo -Eu chris borg "$@"
