@@ -6,7 +6,7 @@
 get_cpu_package_hwmon() {
 	for i in /sys/class/hwmon/hwmon*/temp*_input; do
 		local label="$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*}))"
-		if [ "$label" = "coretemp: Package id 0" ]; then
+		if [ "$label" = "k10temp: Tctl" ]; then
 			echo $(readlink -f $i)
 			break
 		fi
