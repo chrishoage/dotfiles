@@ -57,10 +57,6 @@ super + question
 # bspwm hotkeys
 #
 
-# {quit, restart} bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
-
 # {close, kill} node
 super + {_,shift + }w
 	bspc node -{c,k}
