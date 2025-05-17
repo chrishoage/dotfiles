@@ -45,3 +45,6 @@ bspc rule -a mpv state='floating'
 bspc rule -a feh state='floating' center='on'
 bspc rule -a '*:info-term' state='floating' center='on'
 bspc rule -a '*:info-term-large' state='floating' center='on' rectangle='1000x800+0+0'
+bspc rule -a gamescope monitor='DisplayPort-0'
+bspc rule -a steam monitor='DisplayPort-2'
+
