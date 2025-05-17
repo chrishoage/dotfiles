@@ -29,4 +29,6 @@ bindkey '^[[B' history-substring-search-down
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
+znap source lincheney/fzf-tab-completion zsh/fzf-zsh-completion.sh
+
 [[ -x $(which op) ]] && znap fpath _op 'op completion zsh'
