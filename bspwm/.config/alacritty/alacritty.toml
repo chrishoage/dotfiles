@@ -1,7 +1,7 @@
 import = ["~/.config/alacritty/colors.toml"]
 
 [font]
-size = 11
+size = 13
 
 [window.padding]
 x = 8
