@@ -1,0 +1,45 @@
+# ~/.config/ghostty/config
+
+# Font
+font-family = MonoLisa
+font-size = 14
+font-style = Medium
+font-style-bold = Bold
+font-style-italic = Medium Italic
+font-style-bold-italic = Bold Italic
+
+# Theme
+theme = "Ayu Mirage"
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# Window
+window-padding-x = 12
+window-padding-y = 10
+window-decoration = true
+
+# Rendering & quality
+adjust-cell-height = 5%
+font-thicken = true
+
+# Shell integration
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+
+# Splits & tabs
+confirm-close-surface = false
+unfocused-split-opacity = 0.85
+
+# Scrollback
+scrollback-limit = 10000
+
+# Keybinds
+keybind = opt+h=goto_split:left
+keybind = opt+j=goto_split:bottom
+keybind = opt+k=goto_split:top
+keybind = opt+l=goto_split:right
+keybind = opt+shift+h=new_split:left
+keybind = opt+shift+j=new_split:down
+keybind = opt+shift+k=new_split:up
+keybind = opt+shift+l=new_split:right
