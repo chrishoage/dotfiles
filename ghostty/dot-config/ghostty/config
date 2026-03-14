@@ -32,7 +32,7 @@ confirm-close-surface = false
 unfocused-split-opacity = 0.85
 
 # Scrollback
-scrollback-limit = 10000
+scrollback-limit = 30000000
 
 # Keybinds
 keybind = opt+h=goto_split:left
