@@ -6,6 +6,13 @@ end
 
 starship init fish | source
 
+if not test -f $__fish_config_dir/functions/fisher.fish
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish \
+        --create-dirs -o $__fish_config_dir/functions/fisher.fish
+    source $__fish_config_dir/functions/fisher.fish
+    fisher install 0rax/fish-bd
+end
+
 set --global fish_key_bindings fish_default_key_bindings
 
 set nix_profile /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
