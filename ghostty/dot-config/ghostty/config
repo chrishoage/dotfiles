@@ -1,45 +1,56 @@
-# ~/.config/ghostty/config
-
 # Font
 font-family = MonoLisa
-font-size = 14
+font-size = 12
 font-style = Medium
 font-style-bold = Bold
 font-style-italic = Medium Italic
 font-style-bold-italic = Bold Italic
+font-thicken = true
 
 # Theme
 theme = "Ayu Mirage"
 
 # Cursor
-cursor-style = bar
+cursor-style = block
 cursor-style-blink = true
 
 # Window
 window-padding-x = 12
-window-padding-y = 10
-window-decoration = true
-
-# Rendering & quality
+window-padding-y = 12
+background-opacity = 1.0
 adjust-cell-height = 5%
-font-thicken = true
 
 # Shell integration
-shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor
 
 # Splits & tabs
 confirm-close-surface = false
-unfocused-split-opacity = 0.85
+unfocused-split-opacity = 0.7
 
 # Scrollback
 scrollback-limit = 30000000
 
+# Terminal features
+mouse-hide-while-typing = true
+copy-on-select = false
+app-notifications = no-clipboard-copy,no-config-reload
+
 # Keybinds
-keybind = opt+h=goto_split:left
-keybind = opt+j=goto_split:bottom
-keybind = opt+k=goto_split:top
-keybind = opt+l=goto_split:right
-keybind = opt+shift+h=new_split:left
-keybind = opt+shift+j=new_split:down
-keybind = opt+shift+k=new_split:up
-keybind = opt+shift+l=new_split:right
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+t=new_tab
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
+keybind = shift+enter=text:\n
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:bottom
+keybind = alt+k=goto_split:top
+keybind = alt+l=goto_split:right
+keybind = alt+shift+h=new_split:left
+keybind = alt+shift+j=new_split:down
+keybind = alt+shift+k=new_split:up
+keybind = alt+shift+l=new_split:right
+
+# DMS specific overrides
+config-file = ?dms

@@ -1,0 +1,11 @@
+# Window
+window-decoration = false
+background-blur-radius = 32
+
+# GTK
+gtk-titlebar = false
+gtk-single-instance = true
+
+# Dank material colors
+unfocused-split-fill = #44464f
+theme = dankcolors
