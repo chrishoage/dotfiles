@@ -1,5 +1,11 @@
 fish_add_path "$HOME/.local/bin"
 
+if test -d "$HOME/go/bin"
+	fish_add_path "$HOME/go/bin"
+end
+
+fish_add_path "$HOME/.local/npm/bin"
+
 if test -d /opt/homebrew/bin
     /opt/homebrew/bin/brew shellenv | source
 end
@@ -32,3 +38,5 @@ end
 if command -q fzf
     fzf --fish | source
 end
+
+set -gx EDITOR vim
