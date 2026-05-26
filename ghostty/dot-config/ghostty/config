@@ -13,6 +13,7 @@ theme = "Ayu Mirage"
 # Cursor
 cursor-style = block
 cursor-style-blink = true
+cursor-click-to-move = true
 
 # Window
 window-padding-x = 12
@@ -54,3 +55,4 @@ keybind = alt+shift+l=new_split:right
 
 # DMS specific overrides
 config-file = ?dms
+config-file = ?extra

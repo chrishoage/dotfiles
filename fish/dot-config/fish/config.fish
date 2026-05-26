@@ -12,6 +12,10 @@ end
 
 starship init fish | source
 
+if command -q jj
+  jj util completion fish | source
+end
+
 if not test -f $__fish_config_dir/functions/fisher.fish
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish \
         --create-dirs -o $__fish_config_dir/functions/fisher.fish
