@@ -21,9 +21,13 @@ window-padding-y = 12
 background-opacity = 1.0
 adjust-cell-height = 5%
 
+# Behavior
+working-directory = home
+window-inherit-working-directory = false
+
 # Shell integration
 shell-integration = detect
-shell-integration-features = cursor,sudo,title,no-cursor
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 
 # Splits & tabs
 confirm-close-surface = false
